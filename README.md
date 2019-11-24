@@ -1,3 +1,4 @@
 # pku-lab
 
-python -m pdb scripts/sim_env.py dnc.envs.picker
+python gps/gps_main.py rllab3_picker_example
+
