@@ -26,7 +26,7 @@ class CostSum(Cost):
         Args:
             sample:  A single sample
         """
-
+        '''
         jv = sample.get(JOINT_VELOCITIES)
         eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
 
@@ -40,7 +40,14 @@ class CostSum(Cost):
         liftdist = np.sum((boxpos - tgtpos) ** 2, axis=1)
         
         l = fetchdist + liftdist
+        '''
         #l = fetchdist
+
+        eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
+
+        vec = eepv[:, 64:66]            
+        dist = np.sum(vec ** 2, axis=1)
+        l = dist
         
         lx, lu, lxx, luu, lux = 0, 0, 0, 0, 0
 

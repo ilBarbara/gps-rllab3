@@ -147,6 +147,7 @@ class Algorithm(object):
         for n in range(N):
             sample = self.cur[cond].sample_list[n]
             # Get costs.
+            '''
             jv = sample.get(JOINT_VELOCITIES)
             eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
 
@@ -155,17 +156,24 @@ class Algorithm(object):
             tgtpos = np.zeros((100,3))
             for i in range(100):
                 tgtpos[i] = [0.6, 0.2, 0.1]
+            '''
+            eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
 
-            fetchdist = np.sum((boxpos - fingerpos) ** 2, axis=1)
-            liftdist = np.sum((boxpos - tgtpos) ** 2, axis=1)
+            vec = eepv[:, 64:66]            
+            dist = np.sum(vec ** 2, axis=1)
+            l = dist
 
-            l = fetchdist + liftdist
+            #fetchdist = np.sum((boxpos - fingerpos) ** 2, axis=1)
+            #liftdist = np.sum((boxpos - tgtpos) ** 2, axis=1)
+
+            #l = fetchdist + liftdist
             #l = fetchdist
             cc[n, :] = l
             cs[n, :] = l
 
         for n in range(N):
             for t in range(T):
+                '''
                 cv[n][t][9:12] = [-1.2, -0.4, -0.2]
                 Cm[n][t][9][9] = 2
                 Cm[n][t][9][31] = -1
@@ -179,7 +187,9 @@ class Algorithm(object):
                 Cm[n][t][32][32] = 1            
                 Cm[n][t][33][11] = -1
                 Cm[n][t][33][33] = 1
-                
+                '''
+                Cm[n][t][146][146] = 1
+                Cm[n][t][147][147] = 1
 
             '''
             l, lx, lu, lxx, luu, lux = self.cost[cond].eval(sample)
