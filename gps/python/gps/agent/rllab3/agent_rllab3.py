@@ -3,8 +3,8 @@ from __future__ import print_function
 import sys
 print (sys.path)
 #sys.path.remove('/home2/wsdm/gyy/sjh_project/rllab')
-sys.path.append('/home2/wsdm/gyy/sjh_project/env/rllab')
-sys.path.append('/home2/wsdm/gyy/sjh_project/dnc')
+sys.path.append('../../env/rllab')
+sys.path.append('../../dnc')
 print (sys.path)
 
 from rllab.envs.box2d.cartpole_env import CartpoleEnv
