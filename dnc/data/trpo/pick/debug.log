@@ -1,0 +1,849 @@
+2019-11-19 01:04:29.517639 CST | [experiment_2019_11_19_01_04_26_0001] Populating workers...
+2019-11-19 01:04:30.814029 CST | [experiment_2019_11_19_01_04_26_0001] Populated
+2019-11-19 01:04:30.852201 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Obtaining samples...
+2019-11-19 01:04:37.566298 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Processing samples...
+2019-11-19 01:04:37.678932 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | fitting baseline...
+2019-11-19 01:04:37.864185 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | fitted
+2019-11-19 01:04:37.869220 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Logging diagnostics...
+2019-11-19 01:04:37.906621 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Optimizing policy...
+2019-11-19 01:04:37.908011 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Computing loss before
+2019-11-19 01:04:38.100582 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Computing KL before
+2019-11-19 01:04:38.144399 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Optimizing
+2019-11-19 01:04:38.145986 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Start CG optimization: #parameters: 25764, #inputs: 50589, #subsample_inputs: 50589
+2019-11-19 01:04:38.146135 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | computing loss before
+2019-11-19 01:04:38.166374 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | performing update
+2019-11-19 01:04:38.166631 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | computing gradient
+2019-11-19 01:04:38.465174 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | gradient computed
+2019-11-19 01:04:38.465446 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | computing descent direction
+2019-11-19 01:04:40.832314 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | descent direction computed
+2019-11-19 01:04:40.958317 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | backtrack iters: 1
+2019-11-19 01:04:40.958546 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | computing loss after
+2019-11-19 01:04:40.958646 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | optimization finished
+2019-11-19 01:04:40.958745 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Computing KL after
+2019-11-19 01:04:40.974504 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Computing loss after
+2019-11-19 01:04:40.995636 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Saving snapshot...
+2019-11-19 01:04:41.027176 CST | [experiment_2019_11_19_01_04_26_0001] itr #0 | Saved
+2019-11-19 01:04:41.028187 CST | -----------------------  ---------------
+2019-11-19 01:04:41.028311 CST | Iteration                    0
+2019-11-19 01:04:41.028416 CST | AverageDiscountedReturn      0.00315235
+2019-11-19 01:04:41.028518 CST | AverageReturn                0.00315235
+2019-11-19 01:04:41.028600 CST | ExplainedVariance            2.23886e-05
+2019-11-19 01:04:41.028696 CST | NumTrajs                  1018
+2019-11-19 01:04:41.028774 CST | Entropy                      9.93257
+2019-11-19 01:04:41.028851 CST | Perplexity               20590.2
+2019-11-19 01:04:41.028928 CST | StdReturn                    0.0366143
+2019-11-19 01:04:41.029004 CST | MaxReturn                    0.689618
+2019-11-19 01:04:41.029081 CST | MinReturn                    0
+2019-11-19 01:04:41.029159 CST | PctPicked                    0
+2019-11-19 01:04:41.029236 CST | PctReceivedReward            1.08
+2019-11-19 01:04:41.029314 CST | AverageTimeInAir             0.000363458
+2019-11-19 01:04:41.029390 CST | MaxTimeInAir                 0.07
+2019-11-19 01:04:41.029466 CST | AveragePolicyStd             1
+2019-11-19 01:04:41.029543 CST | LossBefore                   1.37558e-07
+2019-11-19 01:04:41.029619 CST | LossAfter                   -0.0475746
+2019-11-19 01:04:41.029695 CST | MeanKLBefore                 0
+2019-11-19 01:04:41.029780 CST | MeanKL                       0.0131655
+2019-11-19 01:04:41.029861 CST | dLoss                        0.0475747
+2019-11-19 01:04:41.029937 CST | Time                        10.1752
+2019-11-19 01:04:41.030014 CST | ItrTime                     10.1752
+2019-11-19 01:04:41.030098 CST | -----------------------  ---------------
+2019-11-19 01:04:41.030340 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Obtaining samples...
+2019-11-19 01:04:47.860260 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Processing samples...
+2019-11-19 01:04:48.057030 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | fitting baseline...
+2019-11-19 01:04:48.211930 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | fitted
+2019-11-19 01:04:48.281428 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Logging diagnostics...
+2019-11-19 01:04:48.330711 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Optimizing policy...
+2019-11-19 01:04:48.330957 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Computing loss before
+2019-11-19 01:04:48.385723 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Computing KL before
+2019-11-19 01:04:48.437735 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Optimizing
+2019-11-19 01:04:48.439086 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Start CG optimization: #parameters: 25764, #inputs: 50599, #subsample_inputs: 50599
+2019-11-19 01:04:48.439213 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | computing loss before
+2019-11-19 01:04:48.488359 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | performing update
+2019-11-19 01:04:48.488596 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | computing gradient
+2019-11-19 01:04:48.538169 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | gradient computed
+2019-11-19 01:04:48.538398 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | computing descent direction
+2019-11-19 01:04:49.909141 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | descent direction computed
+2019-11-19 01:04:49.929291 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | backtrack iters: 0
+2019-11-19 01:04:49.929520 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | computing loss after
+2019-11-19 01:04:49.929611 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | optimization finished
+2019-11-19 01:04:49.929707 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Computing KL after
+2019-11-19 01:04:49.950459 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Computing loss after
+2019-11-19 01:04:49.969418 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Saving snapshot...
+2019-11-19 01:04:49.978633 CST | [experiment_2019_11_19_01_04_26_0001] itr #1 | Saved
+2019-11-19 01:04:49.979834 CST | -----------------------  ---------------
+2019-11-19 01:04:49.979966 CST | Iteration                    1
+2019-11-19 01:04:49.980066 CST | AverageDiscountedReturn      0.00279549
+2019-11-19 01:04:49.980157 CST | AverageReturn                0.00279549
+2019-11-19 01:04:49.980246 CST | ExplainedVariance           -0.0026464
+2019-11-19 01:04:49.980333 CST | NumTrajs                  1021
+2019-11-19 01:04:49.980420 CST | Entropy                      9.922
+2019-11-19 01:04:49.980505 CST | Perplexity               20373.7
+2019-11-19 01:04:49.980590 CST | StdReturn                    0.0287592
+2019-11-19 01:04:49.980675 CST | MaxReturn                    0.602139
+2019-11-19 01:04:49.980757 CST | MinReturn                    0
+2019-11-19 01:04:49.980841 CST | PctPicked                    0
+2019-11-19 01:04:49.980926 CST | PctReceivedReward            1.37
+2019-11-19 01:04:49.981010 CST | AverageTimeInAir             0.000323213
+2019-11-19 01:04:49.981095 CST | MaxTimeInAir                 0.07
+2019-11-19 01:04:49.981179 CST | AveragePolicyStd             0.998499
+2019-11-19 01:04:49.981264 CST | LossBefore                   5.38632e-09
+2019-11-19 01:04:49.981347 CST | LossAfter                   -0.0412188
+2019-11-19 01:04:49.981431 CST | MeanKLBefore                 0
+2019-11-19 01:04:49.981516 CST | MeanKL                       0.0193531
+2019-11-19 01:04:49.981600 CST | dLoss                        0.0412188
+2019-11-19 01:04:49.981684 CST | Time                        19.1267
+2019-11-19 01:04:49.981768 CST | ItrTime                      8.94849
+2019-11-19 01:04:49.981871 CST | -----------------------  ---------------
+2019-11-19 01:04:49.982173 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Obtaining samples...
+2019-11-19 01:04:56.774497 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Processing samples...
+2019-11-19 01:04:56.972318 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | fitting baseline...
+2019-11-19 01:04:57.129893 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | fitted
+2019-11-19 01:04:57.179896 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Logging diagnostics...
+2019-11-19 01:04:57.245727 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Optimizing policy...
+2019-11-19 01:04:57.246131 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Computing loss before
+2019-11-19 01:04:57.284793 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Computing KL before
+2019-11-19 01:04:57.313401 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Optimizing
+2019-11-19 01:04:57.314956 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Start CG optimization: #parameters: 25764, #inputs: 50575, #subsample_inputs: 50575
+2019-11-19 01:04:57.315097 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | computing loss before
+2019-11-19 01:04:57.362409 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | performing update
+2019-11-19 01:04:57.362661 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | computing gradient
+2019-11-19 01:04:57.413666 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | gradient computed
+2019-11-19 01:04:57.413936 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | computing descent direction
+2019-11-19 01:04:58.597613 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | descent direction computed
+2019-11-19 01:04:58.624813 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | backtrack iters: 0
+2019-11-19 01:04:58.625050 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | computing loss after
+2019-11-19 01:04:58.625153 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | optimization finished
+2019-11-19 01:04:58.625257 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Computing KL after
+2019-11-19 01:04:58.639491 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Computing loss after
+2019-11-19 01:04:58.653633 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Saving snapshot...
+2019-11-19 01:04:58.662817 CST | [experiment_2019_11_19_01_04_26_0001] itr #2 | Saved
+2019-11-19 01:04:58.664027 CST | -----------------------  ---------------
+2019-11-19 01:04:58.664155 CST | Iteration                    2
+2019-11-19 01:04:58.664253 CST | AverageDiscountedReturn      0.00320872
+2019-11-19 01:04:58.664344 CST | AverageReturn                0.00320872
+2019-11-19 01:04:58.664433 CST | ExplainedVariance            0.00375831
+2019-11-19 01:04:58.664524 CST | NumTrajs                  1019
+2019-11-19 01:04:58.664610 CST | Entropy                      9.92313
+2019-11-19 01:04:58.664695 CST | Perplexity               20396.7
+2019-11-19 01:04:58.664780 CST | StdReturn                    0.0360439
+2019-11-19 01:04:58.664864 CST | MaxReturn                    0.774816
+2019-11-19 01:04:58.664949 CST | MinReturn                    0
+2019-11-19 01:04:58.665035 CST | PctPicked                    0
+2019-11-19 01:04:58.665120 CST | PctReceivedReward            1.18
+2019-11-19 01:04:58.665205 CST | AverageTimeInAir             0.000372915
+2019-11-19 01:04:58.665289 CST | MaxTimeInAir                 0.09
+2019-11-19 01:04:58.665374 CST | AveragePolicyStd             0.998679
+2019-11-19 01:04:58.665458 CST | LossBefore                   1.9991e-09
+2019-11-19 01:04:58.665542 CST | LossAfter                   -0.0885864
+2019-11-19 01:04:58.665626 CST | MeanKLBefore                 0
+2019-11-19 01:04:58.665710 CST | MeanKL                       0.0197707
+2019-11-19 01:04:58.665804 CST | dLoss                        0.0885864
+2019-11-19 01:04:58.665890 CST | Time                        27.8108
+2019-11-19 01:04:58.665975 CST | ItrTime                      8.68086
+2019-11-19 01:04:58.666059 CST | -----------------------  ---------------
+2019-11-19 01:04:58.666330 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Obtaining samples...
+2019-11-19 01:05:05.396219 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Processing samples...
+2019-11-19 01:05:05.589177 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | fitting baseline...
+2019-11-19 01:05:05.748283 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | fitted
+2019-11-19 01:05:05.813559 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Logging diagnostics...
+2019-11-19 01:05:05.862659 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Optimizing policy...
+2019-11-19 01:05:05.862971 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Computing loss before
+2019-11-19 01:05:05.903912 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Computing KL before
+2019-11-19 01:05:05.951417 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Optimizing
+2019-11-19 01:05:05.952784 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Start CG optimization: #parameters: 25764, #inputs: 50561, #subsample_inputs: 50561
+2019-11-19 01:05:05.952900 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | computing loss before
+2019-11-19 01:05:05.999542 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | performing update
+2019-11-19 01:05:05.999819 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | computing gradient
+2019-11-19 01:05:06.095074 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | gradient computed
+2019-11-19 01:05:06.095343 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | computing descent direction
+2019-11-19 01:05:07.427377 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | descent direction computed
+2019-11-19 01:05:07.447275 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | backtrack iters: 0
+2019-11-19 01:05:07.447523 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | computing loss after
+2019-11-19 01:05:07.447636 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | optimization finished
+2019-11-19 01:05:07.447759 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Computing KL after
+2019-11-19 01:05:07.463297 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Computing loss after
+2019-11-19 01:05:07.479987 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Saving snapshot...
+2019-11-19 01:05:07.491032 CST | [experiment_2019_11_19_01_04_26_0001] itr #3 | Saved
+2019-11-19 01:05:07.492722 CST | -----------------------  ---------------
+2019-11-19 01:05:07.492861 CST | Iteration                    3
+2019-11-19 01:05:07.492971 CST | AverageDiscountedReturn      0.00490062
+2019-11-19 01:05:07.493073 CST | AverageReturn                0.00490062
+2019-11-19 01:05:07.493172 CST | ExplainedVariance            0.00662377
+2019-11-19 01:05:07.493269 CST | NumTrajs                  1022
+2019-11-19 01:05:07.493365 CST | Entropy                      9.93382
+2019-11-19 01:05:07.493467 CST | Perplexity               20615.9
+2019-11-19 01:05:07.493563 CST | StdReturn                    0.0438576
+2019-11-19 01:05:07.493659 CST | MaxReturn                    0.688107
+2019-11-19 01:05:07.493755 CST | MinReturn                    0
+2019-11-19 01:05:07.493868 CST | PctPicked                    0
+2019-11-19 01:05:07.493964 CST | PctReceivedReward            1.76
+2019-11-19 01:05:07.494060 CST | AverageTimeInAir             0.00053816
+2019-11-19 01:05:07.494155 CST | MaxTimeInAir                 0.08
+2019-11-19 01:05:07.494251 CST | AveragePolicyStd             1.00022
+2019-11-19 01:05:07.494347 CST | LossBefore                  -5.11495e-09
+2019-11-19 01:05:07.494442 CST | LossAfter                   -0.046487
+2019-11-19 01:05:07.494538 CST | MeanKLBefore                 0
+2019-11-19 01:05:07.494634 CST | MeanKL                       0.0197446
+2019-11-19 01:05:07.494730 CST | dLoss                        0.046487
+2019-11-19 01:05:07.494825 CST | Time                        36.6391
+2019-11-19 01:05:07.494921 CST | ItrTime                      8.82496
+2019-11-19 01:05:07.495017 CST | -----------------------  ---------------
+2019-11-19 01:05:07.495453 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Obtaining samples...
+2019-11-19 01:05:14.372602 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Processing samples...
+2019-11-19 01:05:14.636984 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | fitting baseline...
+2019-11-19 01:05:14.828402 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | fitted
+2019-11-19 01:05:14.888730 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Logging diagnostics...
+2019-11-19 01:05:14.948478 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Optimizing policy...
+2019-11-19 01:05:14.948823 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Computing loss before
+2019-11-19 01:05:15.029117 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Computing KL before
+2019-11-19 01:05:15.092451 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Optimizing
+2019-11-19 01:05:15.094273 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Start CG optimization: #parameters: 25764, #inputs: 50591, #subsample_inputs: 50591
+2019-11-19 01:05:15.094437 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | computing loss before
+2019-11-19 01:05:15.126036 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | performing update
+2019-11-19 01:05:15.126278 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | computing gradient
+2019-11-19 01:05:15.211318 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | gradient computed
+2019-11-19 01:05:15.211564 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | computing descent direction
+2019-11-19 01:05:16.636549 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | descent direction computed
+2019-11-19 01:05:16.658093 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | backtrack iters: 0
+2019-11-19 01:05:16.658343 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | computing loss after
+2019-11-19 01:05:16.658454 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | optimization finished
+2019-11-19 01:05:16.658564 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Computing KL after
+2019-11-19 01:05:16.672048 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Computing loss after
+2019-11-19 01:05:16.691814 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Saving snapshot...
+2019-11-19 01:05:16.700131 CST | [experiment_2019_11_19_01_04_26_0001] itr #4 | Saved
+2019-11-19 01:05:16.701227 CST | -----------------------  ---------------
+2019-11-19 01:05:16.701363 CST | Iteration                    4
+2019-11-19 01:05:16.701449 CST | AverageDiscountedReturn      0.00171168
+2019-11-19 01:05:16.701527 CST | AverageReturn                0.00171168
+2019-11-19 01:05:16.701640 CST | ExplainedVariance           -0.0215885
+2019-11-19 01:05:16.701719 CST | NumTrajs                  1018
+2019-11-19 01:05:16.701813 CST | Entropy                      9.91352
+2019-11-19 01:05:16.701913 CST | Perplexity               20201.7
+2019-11-19 01:05:16.701993 CST | StdReturn                    0.0252369
+2019-11-19 01:05:16.702072 CST | MaxReturn                    0.612541
+2019-11-19 01:05:16.702150 CST | MinReturn                    0
+2019-11-19 01:05:16.702244 CST | PctPicked                    0
+2019-11-19 01:05:16.702322 CST | PctReceivedReward            0.98
+2019-11-19 01:05:16.702399 CST | AverageTimeInAir             0.00018664
+2019-11-19 01:05:16.702476 CST | MaxTimeInAir                 0.06
+2019-11-19 01:05:16.702552 CST | AveragePolicyStd             0.997346
+2019-11-19 01:05:16.702629 CST | LossBefore                  -4.71664e-09
+2019-11-19 01:05:16.702706 CST | LossAfter                   -0.0427827
+2019-11-19 01:05:16.702782 CST | MeanKLBefore                 0
+2019-11-19 01:05:16.702860 CST | MeanKL                       0.0186118
+2019-11-19 01:05:16.702936 CST | dLoss                        0.0427827
+2019-11-19 01:05:16.703013 CST | Time                        45.8482
+2019-11-19 01:05:16.703089 CST | ItrTime                      9.2049
+2019-11-19 01:05:16.703166 CST | -----------------------  ---------------
+2019-11-19 01:05:16.703426 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Obtaining samples...
+2019-11-19 01:05:23.546084 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Processing samples...
+2019-11-19 01:05:23.753634 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | fitting baseline...
+2019-11-19 01:05:23.924908 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | fitted
+2019-11-19 01:05:23.963471 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Logging diagnostics...
+2019-11-19 01:05:24.023103 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Optimizing policy...
+2019-11-19 01:05:24.032475 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Computing loss before
+2019-11-19 01:05:24.099984 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Computing KL before
+2019-11-19 01:05:24.167565 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Optimizing
+2019-11-19 01:05:24.168913 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Start CG optimization: #parameters: 25764, #inputs: 50591, #subsample_inputs: 50591
+2019-11-19 01:05:24.169034 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | computing loss before
+2019-11-19 01:05:24.196190 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | performing update
+2019-11-19 01:05:24.196421 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | computing gradient
+2019-11-19 01:05:24.259057 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | gradient computed
+2019-11-19 01:05:24.259295 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | computing descent direction
+2019-11-19 01:05:25.611801 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | descent direction computed
+2019-11-19 01:05:25.654316 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | backtrack iters: 1
+2019-11-19 01:05:25.654541 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | computing loss after
+2019-11-19 01:05:25.654634 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | optimization finished
+2019-11-19 01:05:25.654733 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Computing KL after
+2019-11-19 01:05:25.674576 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Computing loss after
+2019-11-19 01:05:25.694271 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Saving snapshot...
+2019-11-19 01:05:25.701811 CST | [experiment_2019_11_19_01_04_26_0001] itr #5 | Saved
+2019-11-19 01:05:25.702844 CST | -----------------------  ---------------
+2019-11-19 01:05:25.702979 CST | Iteration                    5
+2019-11-19 01:05:25.703061 CST | AverageDiscountedReturn      0.00403492
+2019-11-19 01:05:25.703135 CST | AverageReturn                0.00403492
+2019-11-19 01:05:25.703223 CST | ExplainedVariance            0.00392596
+2019-11-19 01:05:25.703313 CST | NumTrajs                  1021
+2019-11-19 01:05:25.703385 CST | Entropy                      9.90091
+2019-11-19 01:05:25.703457 CST | Perplexity               19948.6
+2019-11-19 01:05:25.703530 CST | StdReturn                    0.047825
+2019-11-19 01:05:25.703602 CST | MaxReturn                    1.08407
+2019-11-19 01:05:25.703692 CST | MinReturn                    0
+2019-11-19 01:05:25.703766 CST | PctPicked                    0
+2019-11-19 01:05:25.703840 CST | PctReceivedReward            1.27
+2019-11-19 01:05:25.703928 CST | AverageTimeInAir             0.000421156
+2019-11-19 01:05:25.704001 CST | MaxTimeInAir                 0.09
+2019-11-19 01:05:25.704073 CST | AveragePolicyStd             0.995568
+2019-11-19 01:05:25.704146 CST | LossBefore                  -3.0273e-09
+2019-11-19 01:05:25.704218 CST | LossAfter                   -0.0643965
+2019-11-19 01:05:25.704290 CST | MeanKLBefore                 0
+2019-11-19 01:05:25.704362 CST | MeanKL                       0.012923
+2019-11-19 01:05:25.704433 CST | dLoss                        0.0643965
+2019-11-19 01:05:25.704505 CST | Time                        54.8498
+2019-11-19 01:05:25.704577 CST | ItrTime                      8.99853
+2019-11-19 01:05:25.704648 CST | -----------------------  ---------------
+2019-11-19 01:05:25.704902 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Obtaining samples...
+2019-11-19 01:05:32.537608 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Processing samples...
+2019-11-19 01:05:32.737168 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | fitting baseline...
+2019-11-19 01:05:32.916209 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | fitted
+2019-11-19 01:05:32.971141 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Logging diagnostics...
+2019-11-19 01:05:33.009306 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Optimizing policy...
+2019-11-19 01:05:33.010487 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Computing loss before
+2019-11-19 01:05:33.101982 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Computing KL before
+2019-11-19 01:05:33.150413 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Optimizing
+2019-11-19 01:05:33.151867 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Start CG optimization: #parameters: 25764, #inputs: 50571, #subsample_inputs: 50571
+2019-11-19 01:05:33.151985 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | computing loss before
+2019-11-19 01:05:33.223606 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | performing update
+2019-11-19 01:05:33.223827 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | computing gradient
+2019-11-19 01:05:33.294800 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | gradient computed
+2019-11-19 01:05:33.295036 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | computing descent direction
+2019-11-19 01:05:34.715559 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | descent direction computed
+2019-11-19 01:05:34.737822 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | backtrack iters: 0
+2019-11-19 01:05:34.738064 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | computing loss after
+2019-11-19 01:05:34.738168 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | optimization finished
+2019-11-19 01:05:34.738279 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Computing KL after
+2019-11-19 01:05:34.752111 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Computing loss after
+2019-11-19 01:05:34.767537 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Saving snapshot...
+2019-11-19 01:05:34.777291 CST | [experiment_2019_11_19_01_04_26_0001] itr #6 | Saved
+2019-11-19 01:05:34.778614 CST | -----------------------  ---------------
+2019-11-19 01:05:34.778747 CST | Iteration                    6
+2019-11-19 01:05:34.778846 CST | AverageDiscountedReturn      0.00576168
+2019-11-19 01:05:34.778938 CST | AverageReturn                0.00576168
+2019-11-19 01:05:34.779026 CST | ExplainedVariance            0.00642963
+2019-11-19 01:05:34.779113 CST | NumTrajs                  1023
+2019-11-19 01:05:34.779200 CST | Entropy                      9.88028
+2019-11-19 01:05:34.779287 CST | Perplexity               19541.2
+2019-11-19 01:05:34.779371 CST | StdReturn                    0.0528169
+2019-11-19 01:05:34.779456 CST | MaxReturn                    0.985115
+2019-11-19 01:05:34.779541 CST | MinReturn                    0
+2019-11-19 01:05:34.779626 CST | PctPicked                    0
+2019-11-19 01:05:34.779711 CST | PctReceivedReward            1.76
+2019-11-19 01:05:34.779796 CST | AverageTimeInAir             0.000615836
+2019-11-19 01:05:34.779878 CST | MaxTimeInAir                 0.08
+2019-11-19 01:05:34.779960 CST | AveragePolicyStd             0.992721
+2019-11-19 01:05:34.780044 CST | LossBefore                   8.08468e-09
+2019-11-19 01:05:34.780128 CST | LossAfter                   -0.0410132
+2019-11-19 01:05:34.780213 CST | MeanKLBefore                 0
+2019-11-19 01:05:34.780295 CST | MeanKL                       0.0197138
+2019-11-19 01:05:34.780378 CST | dLoss                        0.0410132
+2019-11-19 01:05:34.780463 CST | Time                        63.9253
+2019-11-19 01:05:34.780547 CST | ItrTime                      9.0726
+2019-11-19 01:05:34.780632 CST | -----------------------  ---------------
+2019-11-19 01:05:34.780979 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Obtaining samples...
+2019-11-19 01:05:41.675534 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Processing samples...
+2019-11-19 01:05:41.932360 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | fitting baseline...
+2019-11-19 01:05:42.116910 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | fitted
+2019-11-19 01:05:42.216096 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Logging diagnostics...
+2019-11-19 01:05:42.242883 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Optimizing policy...
+2019-11-19 01:05:42.243223 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Computing loss before
+2019-11-19 01:05:42.285973 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Computing KL before
+2019-11-19 01:05:42.314020 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Optimizing
+2019-11-19 01:05:42.315609 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Start CG optimization: #parameters: 25764, #inputs: 50557, #subsample_inputs: 50557
+2019-11-19 01:05:42.315762 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | computing loss before
+2019-11-19 01:05:42.362407 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | performing update
+2019-11-19 01:05:42.362640 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | computing gradient
+2019-11-19 01:05:42.428974 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | gradient computed
+2019-11-19 01:05:42.429303 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | computing descent direction
+2019-11-19 01:05:44.036321 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | descent direction computed
+2019-11-19 01:05:44.062740 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | backtrack iters: 0
+2019-11-19 01:05:44.062975 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | computing loss after
+2019-11-19 01:05:44.063076 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | optimization finished
+2019-11-19 01:05:44.063189 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Computing KL after
+2019-11-19 01:05:44.082783 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Computing loss after
+2019-11-19 01:05:44.099064 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Saving snapshot...
+2019-11-19 01:05:44.108341 CST | [experiment_2019_11_19_01_04_26_0001] itr #7 | Saved
+2019-11-19 01:05:44.109561 CST | -----------------------  ---------------
+2019-11-19 01:05:44.109680 CST | Iteration                    7
+2019-11-19 01:05:44.109787 CST | AverageDiscountedReturn      0.00377371
+2019-11-19 01:05:44.109877 CST | AverageReturn                0.00377371
+2019-11-19 01:05:44.109961 CST | ExplainedVariance            0.00425524
+2019-11-19 01:05:44.110044 CST | NumTrajs                  1022
+2019-11-19 01:05:44.110126 CST | Entropy                      9.87852
+2019-11-19 01:05:44.110207 CST | Perplexity               19506.9
+2019-11-19 01:05:44.110287 CST | StdReturn                    0.0352099
+2019-11-19 01:05:44.110368 CST | MaxReturn                    0.535928
+2019-11-19 01:05:44.110452 CST | MinReturn                    0
+2019-11-19 01:05:44.110533 CST | PctPicked                    0
+2019-11-19 01:05:44.110613 CST | PctReceivedReward            1.66
+2019-11-19 01:05:44.110693 CST | AverageTimeInAir             0.000430528
+2019-11-19 01:05:44.110772 CST | MaxTimeInAir                 0.06
+2019-11-19 01:05:44.110855 CST | AveragePolicyStd             0.992485
+2019-11-19 01:05:44.110938 CST | LossBefore                   1.50671e-09
+2019-11-19 01:05:44.111021 CST | LossAfter                   -0.0556132
+2019-11-19 01:05:44.111104 CST | MeanKLBefore                 0
+2019-11-19 01:05:44.111187 CST | MeanKL                       0.0193125
+2019-11-19 01:05:44.111266 CST | dLoss                        0.0556132
+2019-11-19 01:05:44.111361 CST | Time                        73.2564
+2019-11-19 01:05:44.111442 CST | ItrTime                      9.32759
+2019-11-19 01:05:44.111521 CST | -----------------------  ---------------
+2019-11-19 01:05:44.111886 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Obtaining samples...
+2019-11-19 01:05:51.000299 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Processing samples...
+2019-11-19 01:05:51.192894 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | fitting baseline...
+2019-11-19 01:05:51.368093 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | fitted
+2019-11-19 01:05:51.483941 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Logging diagnostics...
+2019-11-19 01:05:51.509903 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Optimizing policy...
+2019-11-19 01:05:51.510282 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Computing loss before
+2019-11-19 01:05:51.574116 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Computing KL before
+2019-11-19 01:05:51.619876 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Optimizing
+2019-11-19 01:05:51.621434 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Start CG optimization: #parameters: 25764, #inputs: 50598, #subsample_inputs: 50598
+2019-11-19 01:05:51.621579 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | computing loss before
+2019-11-19 01:05:51.672968 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | performing update
+2019-11-19 01:05:51.673222 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | computing gradient
+2019-11-19 01:05:51.762359 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | gradient computed
+2019-11-19 01:05:51.762598 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | computing descent direction
+2019-11-19 01:05:53.332858 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | descent direction computed
+2019-11-19 01:05:53.351937 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | backtrack iters: 0
+2019-11-19 01:05:53.352154 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | computing loss after
+2019-11-19 01:05:53.352245 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | optimization finished
+2019-11-19 01:05:53.352346 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Computing KL after
+2019-11-19 01:05:53.372570 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Computing loss after
+2019-11-19 01:05:53.386543 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Saving snapshot...
+2019-11-19 01:05:53.395156 CST | [experiment_2019_11_19_01_04_26_0001] itr #8 | Saved
+2019-11-19 01:05:53.396316 CST | -----------------------  ---------------
+2019-11-19 01:05:53.396431 CST | Iteration                    8
+2019-11-19 01:05:53.396518 CST | AverageDiscountedReturn      0.00165734
+2019-11-19 01:05:53.396601 CST | AverageReturn                0.00165734
+2019-11-19 01:05:53.396680 CST | ExplainedVariance           -0.00691729
+2019-11-19 01:05:53.396756 CST | NumTrajs                  1017
+2019-11-19 01:05:53.396830 CST | Entropy                      9.88614
+2019-11-19 01:05:53.396904 CST | Perplexity               19656
+2019-11-19 01:05:53.396980 CST | StdReturn                    0.0228796
+2019-11-19 01:05:53.397053 CST | MaxReturn                    0.598312
+2019-11-19 01:05:53.397129 CST | MinReturn                    0
+2019-11-19 01:05:53.397200 CST | PctPicked                    0
+2019-11-19 01:05:53.397272 CST | PctReceivedReward            0.88
+2019-11-19 01:05:53.397347 CST | AverageTimeInAir             0.000186824
+2019-11-19 01:05:53.397421 CST | MaxTimeInAir                 0.06
+2019-11-19 01:05:53.397496 CST | AveragePolicyStd             0.993565
+2019-11-19 01:05:53.397569 CST | LossBefore                   4.74264e-09
+2019-11-19 01:05:53.397640 CST | LossAfter                   -0.0857485
+2019-11-19 01:05:53.397713 CST | MeanKLBefore                 0
+2019-11-19 01:05:53.397807 CST | MeanKL                       0.0199453
+2019-11-19 01:05:53.397882 CST | dLoss                        0.0857485
+2019-11-19 01:05:53.397958 CST | Time                        82.5432
+2019-11-19 01:05:53.398032 CST | ItrTime                      9.28349
+2019-11-19 01:05:53.398103 CST | -----------------------  ---------------
+2019-11-19 01:05:53.398383 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Obtaining samples...
+2019-11-19 01:06:00.412206 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Processing samples...
+2019-11-19 01:06:00.623466 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | fitting baseline...
+2019-11-19 01:06:00.789182 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | fitted
+2019-11-19 01:06:00.914814 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Logging diagnostics...
+2019-11-19 01:06:00.939780 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Optimizing policy...
+2019-11-19 01:06:00.940111 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Computing loss before
+2019-11-19 01:06:01.005358 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Computing KL before
+2019-11-19 01:06:01.038741 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Optimizing
+2019-11-19 01:06:01.040246 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Start CG optimization: #parameters: 25764, #inputs: 50577, #subsample_inputs: 50577
+2019-11-19 01:06:01.040404 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | computing loss before
+2019-11-19 01:06:01.069046 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | performing update
+2019-11-19 01:06:01.069284 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | computing gradient
+2019-11-19 01:06:01.130966 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | gradient computed
+2019-11-19 01:06:01.131219 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | computing descent direction
+2019-11-19 01:06:02.577817 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | descent direction computed
+2019-11-19 01:06:02.615984 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | backtrack iters: 0
+2019-11-19 01:06:02.616206 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | computing loss after
+2019-11-19 01:06:02.616301 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | optimization finished
+2019-11-19 01:06:02.616410 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Computing KL after
+2019-11-19 01:06:02.639587 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Computing loss after
+2019-11-19 01:06:02.660840 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Saving snapshot...
+2019-11-19 01:06:02.669358 CST | [experiment_2019_11_19_01_04_26_0001] itr #9 | Saved
+2019-11-19 01:06:02.670507 CST | -----------------------  ---------------
+2019-11-19 01:06:02.670631 CST | Iteration                    9
+2019-11-19 01:06:02.670715 CST | AverageDiscountedReturn      0.00438216
+2019-11-19 01:06:02.670808 CST | AverageReturn                0.00438216
+2019-11-19 01:06:02.670896 CST | ExplainedVariance            0.00308328
+2019-11-19 01:06:02.670970 CST | NumTrajs                  1019
+2019-11-19 01:06:02.671044 CST | Entropy                      9.86733
+2019-11-19 01:06:02.671116 CST | Perplexity               19289.8
+2019-11-19 01:06:02.671188 CST | StdReturn                    0.0625794
+2019-11-19 01:06:02.671260 CST | MaxReturn                    1.7144
+2019-11-19 01:06:02.671344 CST | MinReturn                    0
+2019-11-19 01:06:02.671416 CST | PctPicked                    0
+2019-11-19 01:06:02.671488 CST | PctReceivedReward            1.28
+2019-11-19 01:06:02.671562 CST | AverageTimeInAir             0.000461237
+2019-11-19 01:06:02.671634 CST | MaxTimeInAir                 0.16
+2019-11-19 01:06:02.671705 CST | AveragePolicyStd             0.990914
+2019-11-19 01:06:02.671776 CST | LossBefore                  -3.34e-09
+2019-11-19 01:06:02.671847 CST | LossAfter                   -0.105562
+2019-11-19 01:06:02.671921 CST | MeanKLBefore                 0
+2019-11-19 01:06:02.671994 CST | MeanKL                       0.0194932
+2019-11-19 01:06:02.672068 CST | dLoss                        0.105562
+2019-11-19 01:06:02.672141 CST | Time                        91.8174
+2019-11-19 01:06:02.672212 CST | ItrTime                      9.27118
+2019-11-19 01:06:02.672285 CST | -----------------------  ---------------
+2019-11-19 01:06:02.672566 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Obtaining samples...
+2019-11-19 01:06:09.534674 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Processing samples...
+2019-11-19 01:06:09.738862 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | fitting baseline...
+2019-11-19 01:06:09.896311 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | fitted
+2019-11-19 01:06:09.931018 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Logging diagnostics...
+2019-11-19 01:06:10.003413 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Optimizing policy...
+2019-11-19 01:06:10.004206 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Computing loss before
+2019-11-19 01:06:10.083321 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Computing KL before
+2019-11-19 01:06:10.118476 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Optimizing
+2019-11-19 01:06:10.119802 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Start CG optimization: #parameters: 25764, #inputs: 50558, #subsample_inputs: 50558
+2019-11-19 01:06:10.119917 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | computing loss before
+2019-11-19 01:06:10.154473 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | performing update
+2019-11-19 01:06:10.154701 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | computing gradient
+2019-11-19 01:06:10.236687 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | gradient computed
+2019-11-19 01:06:10.236989 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | computing descent direction
+2019-11-19 01:06:11.590418 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | descent direction computed
+2019-11-19 01:06:11.641107 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | backtrack iters: 1
+2019-11-19 01:06:11.641354 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | computing loss after
+2019-11-19 01:06:11.641462 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | optimization finished
+2019-11-19 01:06:11.641594 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Computing KL after
+2019-11-19 01:06:11.655840 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Computing loss after
+2019-11-19 01:06:11.677091 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Saving snapshot...
+2019-11-19 01:06:11.686497 CST | [experiment_2019_11_19_01_04_26_0001] itr #10 | Saved
+2019-11-19 01:06:11.687737 CST | -----------------------  ---------------
+2019-11-19 01:06:11.687875 CST | Iteration                   10
+2019-11-19 01:06:11.687979 CST | AverageDiscountedReturn      0.00299841
+2019-11-19 01:06:11.688083 CST | AverageReturn                0.00299841
+2019-11-19 01:06:11.688175 CST | ExplainedVariance           -0.0285487
+2019-11-19 01:06:11.688267 CST | NumTrajs                  1019
+2019-11-19 01:06:11.688357 CST | Entropy                      9.87014
+2019-11-19 01:06:11.688447 CST | Perplexity               19344
+2019-11-19 01:06:11.688537 CST | StdReturn                    0.0354219
+2019-11-19 01:06:11.688627 CST | MaxReturn                    0.653145
+2019-11-19 01:06:11.688713 CST | MinReturn                    0
+2019-11-19 01:06:11.688800 CST | PctPicked                    0
+2019-11-19 01:06:11.688888 CST | PctReceivedReward            1.08
+2019-11-19 01:06:11.688977 CST | AverageTimeInAir             0.00033366
+2019-11-19 01:06:11.689065 CST | MaxTimeInAir                 0.07
+2019-11-19 01:06:11.689154 CST | AveragePolicyStd             0.991354
+2019-11-19 01:06:11.689250 CST | LossBefore                  -4.48939e-09
+2019-11-19 01:06:11.689337 CST | LossAfter                   -0.0505532
+2019-11-19 01:06:11.689423 CST | MeanKLBefore                 0
+2019-11-19 01:06:11.689511 CST | MeanKL                       0.01305
+2019-11-19 01:06:11.689599 CST | dLoss                        0.0505532
+2019-11-19 01:06:11.689688 CST | Time                       100.835
+2019-11-19 01:06:11.689785 CST | ItrTime                      9.01416
+2019-11-19 01:06:11.689885 CST | -----------------------  ---------------
+2019-11-19 01:06:11.690185 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Obtaining samples...
+2019-11-19 01:06:18.571496 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Processing samples...
+2019-11-19 01:06:18.766931 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | fitting baseline...
+2019-11-19 01:06:18.933640 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | fitted
+2019-11-19 01:06:18.981106 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Logging diagnostics...
+2019-11-19 01:06:19.043426 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Optimizing policy...
+2019-11-19 01:06:19.043917 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Computing loss before
+2019-11-19 01:06:19.105989 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Computing KL before
+2019-11-19 01:06:19.182158 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Optimizing
+2019-11-19 01:06:19.184128 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Start CG optimization: #parameters: 25764, #inputs: 50553, #subsample_inputs: 50553
+2019-11-19 01:06:19.184250 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | computing loss before
+2019-11-19 01:06:19.204733 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | performing update
+2019-11-19 01:06:19.204963 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | computing gradient
+2019-11-19 01:06:19.300447 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | gradient computed
+2019-11-19 01:06:19.300687 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | computing descent direction
+2019-11-19 01:06:20.917660 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | descent direction computed
+2019-11-19 01:06:20.940788 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | backtrack iters: 0
+2019-11-19 01:06:20.941029 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | computing loss after
+2019-11-19 01:06:20.941137 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | optimization finished
+2019-11-19 01:06:20.941251 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Computing KL after
+2019-11-19 01:06:20.962623 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Computing loss after
+2019-11-19 01:06:20.982555 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Saving snapshot...
+2019-11-19 01:06:20.994088 CST | [experiment_2019_11_19_01_04_26_0001] itr #11 | Saved
+2019-11-19 01:06:20.995857 CST | -----------------------  ---------------
+2019-11-19 01:06:20.995989 CST | Iteration                   11
+2019-11-19 01:06:20.996111 CST | AverageDiscountedReturn      0.00315841
+2019-11-19 01:06:20.996228 CST | AverageReturn                0.00315841
+2019-11-19 01:06:20.996333 CST | ExplainedVariance            0.00763926
+2019-11-19 01:06:20.996421 CST | NumTrajs                  1022
+2019-11-19 01:06:20.996507 CST | Entropy                      9.87788
+2019-11-19 01:06:20.996613 CST | Perplexity               19494.3
+2019-11-19 01:06:20.996698 CST | StdReturn                    0.0324113
+2019-11-19 01:06:20.996781 CST | MaxReturn                    0.740463
+2019-11-19 01:06:20.996863 CST | MinReturn                    0
+2019-11-19 01:06:20.996947 CST | PctPicked                    0
+2019-11-19 01:06:20.997031 CST | PctReceivedReward            1.57
+2019-11-19 01:06:20.997114 CST | AverageTimeInAir             0.000362035
+2019-11-19 01:06:20.997198 CST | MaxTimeInAir                 0.08
+2019-11-19 01:06:20.997282 CST | AveragePolicyStd             0.99241
+2019-11-19 01:06:20.997365 CST | LossBefore                  -7.75933e-09
+2019-11-19 01:06:20.997447 CST | LossAfter                   -0.0746625
+2019-11-19 01:06:20.997529 CST | MeanKLBefore                 0
+2019-11-19 01:06:20.997626 CST | MeanKL                       0.0198507
+2019-11-19 01:06:20.997710 CST | dLoss                        0.0746625
+2019-11-19 01:06:20.997820 CST | Time                       110.142
+2019-11-19 01:06:20.997912 CST | ItrTime                      9.30424
+2019-11-19 01:06:20.998010 CST | -----------------------  ---------------
+2019-11-19 01:06:20.998527 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Obtaining samples...
+2019-11-19 01:06:27.859224 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Processing samples...
+2019-11-19 01:06:28.070024 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | fitting baseline...
+2019-11-19 01:06:28.241390 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | fitted
+2019-11-19 01:06:28.291183 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Logging diagnostics...
+2019-11-19 01:06:28.349747 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Optimizing policy...
+2019-11-19 01:06:28.350502 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Computing loss before
+2019-11-19 01:06:28.424726 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Computing KL before
+2019-11-19 01:06:28.480804 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Optimizing
+2019-11-19 01:06:28.482496 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Start CG optimization: #parameters: 25764, #inputs: 50582, #subsample_inputs: 50582
+2019-11-19 01:06:28.482623 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | computing loss before
+2019-11-19 01:06:28.535461 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | performing update
+2019-11-19 01:06:28.535693 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | computing gradient
+2019-11-19 01:06:28.602117 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | gradient computed
+2019-11-19 01:06:28.602347 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | computing descent direction
+2019-11-19 01:06:30.085922 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | descent direction computed
+2019-11-19 01:06:30.105644 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | backtrack iters: 0
+2019-11-19 01:06:30.105877 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | computing loss after
+2019-11-19 01:06:30.105968 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | optimization finished
+2019-11-19 01:06:30.106058 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Computing KL after
+2019-11-19 01:06:30.134747 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Computing loss after
+2019-11-19 01:06:30.154070 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Saving snapshot...
+2019-11-19 01:06:30.163169 CST | [experiment_2019_11_19_01_04_26_0001] itr #12 | Saved
+2019-11-19 01:06:30.164580 CST | -----------------------  ---------------
+2019-11-19 01:06:30.164692 CST | Iteration                   12
+2019-11-19 01:06:30.164780 CST | AverageDiscountedReturn      0.00651621
+2019-11-19 01:06:30.164858 CST | AverageReturn                0.00651621
+2019-11-19 01:06:30.164940 CST | ExplainedVariance            0.00552582
+2019-11-19 01:06:30.165015 CST | NumTrajs                  1026
+2019-11-19 01:06:30.165088 CST | Entropy                      9.89785
+2019-11-19 01:06:30.165161 CST | Perplexity               19887.5
+2019-11-19 01:06:30.165233 CST | StdReturn                    0.0631683
+2019-11-19 01:06:30.165305 CST | MaxReturn                    1.48536
+2019-11-19 01:06:30.165381 CST | MinReturn                    0
+2019-11-19 01:06:30.165453 CST | PctPicked                    0
+2019-11-19 01:06:30.165526 CST | PctReceivedReward            2.24
+2019-11-19 01:06:30.165597 CST | AverageTimeInAir             0.000721248
+2019-11-19 01:06:30.165670 CST | MaxTimeInAir                 0.15
+2019-11-19 01:06:30.165746 CST | AveragePolicyStd             0.995222
+2019-11-19 01:06:30.165835 CST | LossBefore                  -4.34114e-09
+2019-11-19 01:06:30.165907 CST | LossAfter                   -0.080054
+2019-11-19 01:06:30.165980 CST | MeanKLBefore                 0
+2019-11-19 01:06:30.166050 CST | MeanKL                       0.0191998
+2019-11-19 01:06:30.166121 CST | dLoss                        0.080054
+2019-11-19 01:06:30.166192 CST | Time                       119.311
+2019-11-19 01:06:30.166263 CST | ItrTime                      9.16489
+2019-11-19 01:06:30.166335 CST | -----------------------  ---------------
+2019-11-19 01:06:30.166778 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Obtaining samples...
+2019-11-19 01:06:37.081074 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Processing samples...
+2019-11-19 01:06:37.294713 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | fitting baseline...
+2019-11-19 01:06:37.471022 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | fitted
+2019-11-19 01:06:37.505683 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Logging diagnostics...
+2019-11-19 01:06:37.563769 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Optimizing policy...
+2019-11-19 01:06:37.565268 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Computing loss before
+2019-11-19 01:06:37.644535 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Computing KL before
+2019-11-19 01:06:37.667160 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Optimizing
+2019-11-19 01:06:37.668501 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Start CG optimization: #parameters: 25764, #inputs: 50583, #subsample_inputs: 50583
+2019-11-19 01:06:37.668637 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | computing loss before
+2019-11-19 01:06:37.693025 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | performing update
+2019-11-19 01:06:37.693297 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | computing gradient
+2019-11-19 01:06:37.799726 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | gradient computed
+2019-11-19 01:06:37.799976 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | computing descent direction
+2019-11-19 01:06:39.053195 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | descent direction computed
+2019-11-19 01:06:39.089604 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | backtrack iters: 0
+2019-11-19 01:06:39.089837 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | computing loss after
+2019-11-19 01:06:39.089936 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | optimization finished
+2019-11-19 01:06:39.090044 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Computing KL after
+2019-11-19 01:06:39.105349 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Computing loss after
+2019-11-19 01:06:39.126661 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Saving snapshot...
+2019-11-19 01:06:39.136082 CST | [experiment_2019_11_19_01_04_26_0001] itr #13 | Saved
+2019-11-19 01:06:39.137516 CST | -----------------------  ---------------
+2019-11-19 01:06:39.137643 CST | Iteration                   13
+2019-11-19 01:06:39.137736 CST | AverageDiscountedReturn      0.00478869
+2019-11-19 01:06:39.137835 CST | AverageReturn                0.00478869
+2019-11-19 01:06:39.137920 CST | ExplainedVariance           -0.00293749
+2019-11-19 01:06:39.138005 CST | NumTrajs                  1024
+2019-11-19 01:06:39.138101 CST | Entropy                      9.90884
+2019-11-19 01:06:39.138189 CST | Perplexity               20107.4
+2019-11-19 01:06:39.138273 CST | StdReturn                    0.0468679
+2019-11-19 01:06:39.138353 CST | MaxReturn                    0.908204
+2019-11-19 01:06:39.138432 CST | MinReturn                    0
+2019-11-19 01:06:39.138512 CST | PctPicked                    0
+2019-11-19 01:06:39.138602 CST | PctReceivedReward            1.76
+2019-11-19 01:06:39.138733 CST | AverageTimeInAir             0.000546875
+2019-11-19 01:06:39.138857 CST | MaxTimeInAir                 0.11
+2019-11-19 01:06:39.138983 CST | AveragePolicyStd             0.996783
+2019-11-19 01:06:39.139104 CST | LossBefore                  -5.64431e-10
+2019-11-19 01:06:39.139220 CST | LossAfter                   -0.106338
+2019-11-19 01:06:39.139335 CST | MeanKLBefore                 0
+2019-11-19 01:06:39.139459 CST | MeanKL                       0.0192678
+2019-11-19 01:06:39.139581 CST | dLoss                        0.106338
+2019-11-19 01:06:39.139711 CST | Time                       128.284
+2019-11-19 01:06:39.139795 CST | ItrTime                      8.96954
+2019-11-19 01:06:39.139876 CST | -----------------------  ---------------
+2019-11-19 01:06:39.140276 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Obtaining samples...
+2019-11-19 01:06:46.057298 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Processing samples...
+2019-11-19 01:06:46.273813 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | fitting baseline...
+2019-11-19 01:06:46.445844 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | fitted
+2019-11-19 01:06:46.515419 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Logging diagnostics...
+2019-11-19 01:06:46.558729 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Optimizing policy...
+2019-11-19 01:06:46.559063 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Computing loss before
+2019-11-19 01:06:46.624632 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Computing KL before
+2019-11-19 01:06:46.675250 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Optimizing
+2019-11-19 01:06:46.676567 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Start CG optimization: #parameters: 25764, #inputs: 50592, #subsample_inputs: 50592
+2019-11-19 01:06:46.676686 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | computing loss before
+2019-11-19 01:06:46.698602 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | performing update
+2019-11-19 01:06:46.698827 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | computing gradient
+2019-11-19 01:06:46.807857 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | gradient computed
+2019-11-19 01:06:46.808088 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | computing descent direction
+2019-11-19 01:06:48.179082 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | descent direction computed
+2019-11-19 01:06:48.210342 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | backtrack iters: 0
+2019-11-19 01:06:48.210600 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | computing loss after
+2019-11-19 01:06:48.210703 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | optimization finished
+2019-11-19 01:06:48.210817 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Computing KL after
+2019-11-19 01:06:48.233065 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Computing loss after
+2019-11-19 01:06:48.257881 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Saving snapshot...
+2019-11-19 01:06:48.268623 CST | [experiment_2019_11_19_01_04_26_0001] itr #14 | Saved
+2019-11-19 01:06:48.269923 CST | -----------------------  ---------------
+2019-11-19 01:06:48.270052 CST | Iteration                   14
+2019-11-19 01:06:48.270151 CST | AverageDiscountedReturn      0.00276287
+2019-11-19 01:06:48.270242 CST | AverageReturn                0.00276287
+2019-11-19 01:06:48.270328 CST | ExplainedVariance           -0.00367078
+2019-11-19 01:06:48.270414 CST | NumTrajs                  1022
+2019-11-19 01:06:48.270500 CST | Entropy                      9.92996
+2019-11-19 01:06:48.270585 CST | Perplexity               20536.4
+2019-11-19 01:06:48.270671 CST | StdReturn                    0.0283147
+2019-11-19 01:06:48.270756 CST | MaxReturn                    0.556029
+2019-11-19 01:06:48.270841 CST | MinReturn                    0
+2019-11-19 01:06:48.270926 CST | PctPicked                    0
+2019-11-19 01:06:48.271011 CST | PctReceivedReward            1.47
+2019-11-19 01:06:48.271096 CST | AverageTimeInAir             0.000313112
+2019-11-19 01:06:48.271180 CST | MaxTimeInAir                 0.06
+2019-11-19 01:06:48.271265 CST | AveragePolicyStd             0.9998
+2019-11-19 01:06:48.271350 CST | LossBefore                   2.26204e-09
+2019-11-19 01:06:48.271434 CST | LossAfter                   -0.0748118
+2019-11-19 01:06:48.271519 CST | MeanKLBefore                 0
+2019-11-19 01:06:48.271603 CST | MeanKL                       0.019755
+2019-11-19 01:06:48.271685 CST | dLoss                        0.0748118
+2019-11-19 01:06:48.271769 CST | Time                       137.417
+2019-11-19 01:06:48.271853 CST | ItrTime                      9.12858
+2019-11-19 01:06:48.271937 CST | -----------------------  ---------------
+2019-11-19 01:06:48.272236 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Obtaining samples...
+2019-11-19 01:06:55.208107 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Processing samples...
+2019-11-19 01:06:55.484655 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | fitting baseline...
+2019-11-19 01:06:55.674789 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | fitted
+2019-11-19 01:06:55.720946 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Logging diagnostics...
+2019-11-19 01:06:55.775831 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Optimizing policy...
+2019-11-19 01:06:55.777172 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Computing loss before
+2019-11-19 01:06:55.836841 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Computing KL before
+2019-11-19 01:06:55.863727 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Optimizing
+2019-11-19 01:06:55.865199 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Start CG optimization: #parameters: 25764, #inputs: 50597, #subsample_inputs: 50597
+2019-11-19 01:06:55.865327 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | computing loss before
+2019-11-19 01:06:55.890149 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | performing update
+2019-11-19 01:06:55.890382 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | computing gradient
+2019-11-19 01:06:55.994075 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | gradient computed
+2019-11-19 01:06:55.994305 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | computing descent direction
+2019-11-19 01:06:57.444121 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | descent direction computed
+2019-11-19 01:06:57.462840 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | backtrack iters: 0
+2019-11-19 01:06:57.463122 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | computing loss after
+2019-11-19 01:06:57.463252 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | optimization finished
+2019-11-19 01:06:57.463397 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Computing KL after
+2019-11-19 01:06:57.479833 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Computing loss after
+2019-11-19 01:06:57.494617 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Saving snapshot...
+2019-11-19 01:06:57.503608 CST | [experiment_2019_11_19_01_04_26_0001] itr #15 | Saved
+2019-11-19 01:06:57.504809 CST | -----------------------  ---------------
+2019-11-19 01:06:57.504930 CST | Iteration                   15
+2019-11-19 01:06:57.505025 CST | AverageDiscountedReturn      0.00450022
+2019-11-19 01:06:57.505115 CST | AverageReturn                0.00450022
+2019-11-19 01:06:57.505201 CST | ExplainedVariance            0.00371126
+2019-11-19 01:06:57.505285 CST | NumTrajs                  1023
+2019-11-19 01:06:57.505371 CST | Entropy                      9.94266
+2019-11-19 01:06:57.505454 CST | Perplexity               20798.9
+2019-11-19 01:06:57.505539 CST | StdReturn                    0.0536503
+2019-11-19 01:06:57.505621 CST | MaxReturn                    1.36858
+2019-11-19 01:06:57.505704 CST | MinReturn                    0
+2019-11-19 01:06:57.505801 CST | PctPicked                    0
+2019-11-19 01:06:57.505895 CST | PctReceivedReward            1.66
+2019-11-19 01:06:57.505981 CST | AverageTimeInAir             0.000498534
+2019-11-19 01:06:57.506064 CST | MaxTimeInAir                 0.14
+2019-11-19 01:06:57.506145 CST | AveragePolicyStd             1.0016
+2019-11-19 01:06:57.506227 CST | LossBefore                   7.88095e-09
+2019-11-19 01:06:57.506312 CST | LossAfter                   -0.118615
+2019-11-19 01:06:57.506394 CST | MeanKLBefore                 0
+2019-11-19 01:06:57.506480 CST | MeanKL                       0.0196636
+2019-11-19 01:06:57.506565 CST | dLoss                        0.118615
+2019-11-19 01:06:57.506647 CST | Time                       146.652
+2019-11-19 01:06:57.506733 CST | ItrTime                      9.23158
+2019-11-19 01:06:57.506831 CST | -----------------------  ---------------
+2019-11-19 01:06:57.507148 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Obtaining samples...
+2019-11-19 01:07:04.443276 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Processing samples...
+2019-11-19 01:07:04.647840 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | fitting baseline...
+2019-11-19 01:07:04.811059 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | fitted
+2019-11-19 01:07:04.853861 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Logging diagnostics...
+2019-11-19 01:07:04.921439 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Optimizing policy...
+2019-11-19 01:07:04.921785 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Computing loss before
+2019-11-19 01:07:05.000437 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Computing KL before
+2019-11-19 01:07:05.028158 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Optimizing
+2019-11-19 01:07:05.029402 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Start CG optimization: #parameters: 25764, #inputs: 50566, #subsample_inputs: 50566
+2019-11-19 01:07:05.029529 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | computing loss before
+2019-11-19 01:07:05.112138 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | performing update
+2019-11-19 01:07:05.112353 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | computing gradient
+2019-11-19 01:07:05.234747 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | gradient computed
+2019-11-19 01:07:05.234984 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | computing descent direction
+2019-11-19 01:07:06.581450 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | descent direction computed
+2019-11-19 01:07:06.624477 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | backtrack iters: 1
+2019-11-19 01:07:06.624693 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | computing loss after
+2019-11-19 01:07:06.624784 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | optimization finished
+2019-11-19 01:07:06.624883 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Computing KL after
+2019-11-19 01:07:06.648628 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Computing loss after
+2019-11-19 01:07:06.669965 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Saving snapshot...
+2019-11-19 01:07:06.677880 CST | [experiment_2019_11_19_01_04_26_0001] itr #16 | Saved
+2019-11-19 01:07:06.678903 CST | -----------------------  ---------------
+2019-11-19 01:07:06.679030 CST | Iteration                   16
+2019-11-19 01:07:06.679116 CST | AverageDiscountedReturn      0.00625949
+2019-11-19 01:07:06.679194 CST | AverageReturn                0.00625949
+2019-11-19 01:07:06.679270 CST | ExplainedVariance            0.00723761
+2019-11-19 01:07:06.679343 CST | NumTrajs                  1025
+2019-11-19 01:07:06.679426 CST | Entropy                      9.93279
+2019-11-19 01:07:06.679500 CST | Perplexity               20594.6
+2019-11-19 01:07:06.679573 CST | StdReturn                    0.0551065
+2019-11-19 01:07:06.679646 CST | MaxReturn                    0.939176
+2019-11-19 01:07:06.679719 CST | MinReturn                    0
+2019-11-19 01:07:06.679791 CST | PctPicked                    0
+2019-11-19 01:07:06.679863 CST | PctReceivedReward            2.15
+2019-11-19 01:07:06.679935 CST | AverageTimeInAir             0.000692683
+2019-11-19 01:07:06.680006 CST | MaxTimeInAir                 0.1
+2019-11-19 01:07:06.680077 CST | AveragePolicyStd             1.00018
+2019-11-19 01:07:06.680150 CST | LossBefore                   1.76671e-08
+2019-11-19 01:07:06.680222 CST | LossAfter                   -0.0363321
+2019-11-19 01:07:06.680294 CST | MeanKLBefore                 0
+2019-11-19 01:07:06.680367 CST | MeanKL                       0.0128522
+2019-11-19 01:07:06.680439 CST | dLoss                        0.0363321
+2019-11-19 01:07:06.680511 CST | Time                       155.826
+2019-11-19 01:07:06.680583 CST | ItrTime                      9.17092
+2019-11-19 01:07:06.680655 CST | -----------------------  ---------------
+2019-11-19 01:07:06.680894 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Obtaining samples...
+2019-11-19 01:07:13.509635 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Processing samples...
+2019-11-19 01:07:13.768917 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | fitting baseline...
+2019-11-19 01:07:13.928274 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | fitted
+2019-11-19 01:07:13.975083 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Logging diagnostics...
+2019-11-19 01:07:14.040782 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Optimizing policy...
+2019-11-19 01:07:14.041417 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Computing loss before
+2019-11-19 01:07:14.081114 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Computing KL before
+2019-11-19 01:07:14.108551 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Optimizing
+2019-11-19 01:07:14.110060 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Start CG optimization: #parameters: 25764, #inputs: 50586, #subsample_inputs: 50586
+2019-11-19 01:07:14.110200 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | computing loss before
+2019-11-19 01:07:14.165951 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | performing update
+2019-11-19 01:07:14.166206 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | computing gradient
+2019-11-19 01:07:14.277704 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | gradient computed
+2019-11-19 01:07:14.277957 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | computing descent direction
+2019-11-19 01:07:15.804370 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | descent direction computed
+2019-11-19 01:07:15.822053 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | backtrack iters: 0
+2019-11-19 01:07:15.822286 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | computing loss after
+2019-11-19 01:07:15.822390 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | optimization finished
+2019-11-19 01:07:15.822496 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Computing KL after
+2019-11-19 01:07:15.845169 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Computing loss after
+2019-11-19 01:07:15.859646 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Saving snapshot...
+2019-11-19 01:07:15.868669 CST | [experiment_2019_11_19_01_04_26_0001] itr #17 | Saved
+2019-11-19 01:07:15.869862 CST | -----------------------  ---------------
+2019-11-19 01:07:15.869984 CST | Iteration                   17
+2019-11-19 01:07:15.870078 CST | AverageDiscountedReturn      0.00452612
+2019-11-19 01:07:15.870169 CST | AverageReturn                0.00452612
+2019-11-19 01:07:15.870256 CST | ExplainedVariance            0.00460275
+2019-11-19 01:07:15.870341 CST | NumTrajs                  1022
+2019-11-19 01:07:15.870440 CST | Entropy                      9.92857
+2019-11-19 01:07:15.870523 CST | Perplexity               20507.9
+2019-11-19 01:07:15.870611 CST | StdReturn                    0.0417011
+2019-11-19 01:07:15.870696 CST | MaxReturn                    0.675804
+2019-11-19 01:07:15.870778 CST | MinReturn                    0
+2019-11-19 01:07:15.870862 CST | PctPicked                    0
+2019-11-19 01:07:15.870947 CST | PctReceivedReward            1.57
+2019-11-19 01:07:15.871028 CST | AverageTimeInAir             0.000499022
+2019-11-19 01:07:15.871112 CST | MaxTimeInAir                 0.07
+2019-11-19 01:07:15.871194 CST | AveragePolicyStd             0.999578
+2019-11-19 01:07:15.871274 CST | LossBefore                   5.17856e-10
+2019-11-19 01:07:15.871354 CST | LossAfter                   -0.0995668
+2019-11-19 01:07:15.871436 CST | MeanKLBefore                 0
+2019-11-19 01:07:15.871519 CST | MeanKL                       0.0193581
+2019-11-19 01:07:15.871603 CST | dLoss                        0.0995668
+2019-11-19 01:07:15.871685 CST | Time                       165.017
+2019-11-19 01:07:15.871766 CST | ItrTime                      9.188
+2019-11-19 01:07:15.871847 CST | -----------------------  ---------------
+2019-11-19 01:07:15.872161 CST | [experiment_2019_11_19_01_04_26_0001] itr #18 | Obtaining samples...
