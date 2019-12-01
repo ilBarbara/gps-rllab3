@@ -1,0 +1,304 @@
+
+
+
+
+exp_name:   my_experiment_11-21-19_10-59
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+my_experiment_11-21-19_10-59
+    |                       |          condition 0                |          condition 1                |          condition 2                |          condition 3               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost
+
+
+exp_name:   my_experiment_11-21-19_11-09
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+my_experiment_11-21-19_11-09
+    |                       |          condition 0                |          condition 1                |          condition 2                |          condition 3               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost
+
+
+exp_name:   my_experiment_11-21-19_11-37
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+my_experiment_11-21-19_11-37
+    |                       |          condition 0                |          condition 1                |          condition 2                |          condition 3               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost
+  0 |    55.75         6.97 |   101.82     1.00  -180.54     9.80 |    14.24     1.00  -180.54     8.68 |    21.12     1.00  -180.54     3.64 |    85.82     1.00  -180.54     5.75
+  1 |    24.74        11.48 |    23.96     0.98  -383.71     6.51 |    22.55     0.98  -385.58     7.44 |    34.73     0.98  -385.14    24.47 |    17.72     0.98  -381.66     7.52
+  2 |    23.13         4.57 |    20.58     0.50  -376.51     3.86 |    21.66     0.50  -375.97     4.42 |    34.18     0.50  -377.46     3.15 |    16.08     0.50  -377.39     6.85
+  3 |    36.83         7.46 |    13.04     2.50  -375.66    13.49 |    14.99     2.50  -371.43     6.44 |    48.34     2.50  -369.58     4.51 |    70.97     2.50  -371.05     5.41
+
+
+exp_name:   my_experiment_11-21-19_11-48
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+my_experiment_11-21-19_11-48
+    |                       |          condition 0                |          condition 1                |          condition 2                |          condition 3               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost
+  0 |    55.75         6.97 |   101.82     1.00  -180.54     9.80 |    14.24     1.00  -180.54     8.68 |    21.12     1.00  -180.54     3.64 |    85.82     1.00  -180.54     5.75
+  1 |    24.74        11.48 |    23.96     0.98  -383.71     6.51 |    22.55     0.98  -385.58     7.44 |    34.73     0.98  -385.14    24.47 |    17.72     0.98  -381.66     7.52
+  2 |    23.13         4.57 |    20.58     0.50  -376.51     3.86 |    21.66     0.50  -375.97     4.42 |    34.18     0.50  -377.46     3.15 |    16.08     0.50  -377.39     6.85
+  3 |    36.83         7.46 |    13.04     2.50  -375.66    13.49 |    14.99     2.50  -371.43     6.44 |    48.34     2.50  -369.58     4.51 |    70.97     2.50  -371.05     5.41
+  4 |    40.40         4.14 |    17.93     1.25  -367.31     3.50 |    28.49     1.25  -371.63     4.94 |    38.67     1.25  -365.94     3.91 |    76.49     1.25  -364.85     4.22
+  5 |    43.41         5.65 |    48.85     0.63  -361.64     5.37 |    14.99     0.63  -361.95     6.30 |    46.74     0.63  -361.24     6.91 |    63.07     0.63  -359.88     4.02
+  6 |    45.08         5.50 |    31.98     0.50  -356.03     3.26 |    32.41     0.50  -356.85     6.91 |    19.80     0.50  -355.18     5.84 |    96.12     0.50  -355.20     6.00
+  7 |    31.69         5.36 |    17.29     0.50  -352.28     4.48 |    27.81     0.50  -351.99     5.64 |    45.55     0.50  -352.44     5.69 |    36.11     0.50  -348.81     5.63
+  8 |    27.98         5.80 |    20.69     0.50  -349.09     6.48 |    19.28     0.50  -347.17     6.35 |    48.39     0.50  -345.33     4.79 |    23.57     0.50  -347.22     5.57
+  9 |    52.70         6.10 |    29.30     0.50  -341.35     6.32 |    89.57     0.50  -345.21     5.76 |    21.00     0.50  -341.73     6.35 |    70.95     0.50  -342.43     5.97
+ 10 |    25.22         5.50 |    18.63     0.50  -339.82     4.95 |    30.52     0.50  -335.97     4.62 |    28.20     0.50  -340.00     8.05 |    23.51     0.50  -338.67     4.39
+ 11 |    36.91         5.70 |    26.52     0.50  -335.94     5.86 |    35.79     0.50  -334.91     5.05 |    34.82     0.50  -335.23     6.73 |    50.52     0.50  -335.92     5.17
+
+
+exp_name:   my_experiment_11-21-19_12-05
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+my_experiment_11-21-19_12-05
+    |                       |          condition 0                |          condition 1                |          condition 2                |          condition 3               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost
+  0 |    34.13         5.49 |    59.35     1.00  -180.54     7.28 |    12.78     1.00  -180.54     7.24 |    17.39     1.00  -180.54     3.14 |    46.98     1.00  -180.54     4.29
+  1 |    18.29         9.62 |    16.73     0.94  -383.71     5.24 |    19.84     0.94  -385.58     6.14 |    22.10     0.94  -385.14    20.50 |    14.48     0.94  -381.66     6.60
+  2 |    16.57         3.44 |    14.63     0.50  -376.51     2.56 |    14.88     0.50  -375.97     2.98 |    22.45     0.50  -377.46     2.77 |    14.32     0.50  -377.39     5.47
+  3 |    25.44         5.35 |    11.77     2.50  -375.66     9.89 |    13.01     2.50  -371.43     4.42 |    38.49     2.50  -369.58     3.44 |    38.51     2.50  -371.05     3.65
+  4 |    25.20         3.46 |    12.86     1.26  -367.31     3.10 |    20.59     1.26  -371.63     3.97 |    21.86     1.26  -365.94     3.36 |    45.49     1.26  -364.85     3.41
+  5 |    27.52         4.53 |    29.55     0.63  -361.64     4.08 |    12.03     0.63  -361.95     5.13 |    29.77     0.63  -361.24     5.71 |    38.73     0.63  -359.88     3.19
+  6 |    29.49         3.52 |    20.94     0.50  -356.03     2.69 |    24.69     0.50  -356.85     3.58 |    15.56     0.50  -355.18     4.02 |    56.76     0.50  -355.20     3.79
+  7 |    23.73         3.86 |    15.58     0.50  -352.28     3.61 |    19.04     0.50  -351.99     4.25 |    32.77     0.50  -352.44     3.92 |    27.55     0.50  -348.81     3.67
+  8 |    21.65         4.33 |    16.60     0.50  -349.09     4.52 |    18.18     0.50  -347.17     4.55 |    33.46     0.50  -345.33     3.87 |    18.34     0.50  -347.22     4.36
+  9 |    31.26         4.53 |    24.39     0.50  -341.35     4.63 |    37.57     0.50  -345.21     4.51 |    15.70     0.50  -341.73     4.23 |    47.38     0.50  -342.43     4.75
+ 10 |    20.29         4.06 |    15.81     0.50  -339.82     3.87 |    24.35     0.50  -335.97     3.59 |    19.78     0.50  -340.00     5.43 |    21.23     0.50  -338.67     3.36
+ 11 |    23.91         4.56 |    18.16     0.50  -335.94     4.66 |    21.81     0.50  -334.91     4.03 |    24.13     0.50  -335.23     5.05 |    31.54     0.50  -335.92     4.49
+
+
+exp_name:   my_experiment_11-21-19_12-14
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+my_experiment_11-21-19_12-14
+    |                       |          condition 0                |          condition 1                |          condition 2                |          condition 3               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost |   cost     step   entropy  pol_cost
+  0 |    34.13         5.49 |    59.35     1.00  -180.54     7.28 |    12.78     1.00  -180.54     7.24 |    17.39     1.00  -180.54     3.14 |    46.98     1.00  -180.54     4.29
+  1 |    18.29         9.62 |    16.73     0.94  -383.71     5.24 |    19.84     0.94  -385.58     6.14 |    22.10     0.94  -385.14    20.50 |    14.48     0.94  -381.66     6.60
+  2 |    16.57         3.44 |    14.63     0.50  -376.51     2.56 |    14.88     0.50  -375.97     2.98 |    22.45     0.50  -377.46     2.77 |    14.32     0.50  -377.39     5.47
+
+
+exp_name:   my_experiment_11-21-19_12-24
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    5
+
+my_experiment_11-21-19_12-24
+    |                       |          condition 0               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost
+  0 |    20.24         6.12 |    20.24     1.00  -180.54     6.12
+  1 |    11.76        10.86 |    11.76     0.71  -386.73    10.86
+
+
+exp_name:   my_experiment_11-21-19_12-26
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    5
+
+my_experiment_11-21-19_12-26
+    |                       |          condition 0               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost
+  0 |    20.24         6.12 |    20.24     1.00  -180.54     6.12
+  1 |    11.76        10.86 |    11.76     0.71  -386.73    10.86
+
+
+exp_name:   my_experiment_11-21-19_12-29
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+my_experiment_11-21-19_12-29
+    |                       |          condition 0               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost
+  0 |    18.27         9.86 |    18.27     1.00  -180.54     9.86
+  1 |    16.83         8.13 |    16.83     0.50  -384.50     8.13
+  2 |    31.95         3.90 |    31.95     0.50  -378.55     3.90
+  3 |    20.76        16.84 |    20.76     0.50  -373.81    16.84
+  4 |    22.01         4.07 |    22.01     0.50  -369.83     4.07
+  5 |    17.10         3.24 |    17.10     0.50  -365.75     3.24
+  6 |    26.37         5.28 |    26.37     0.50  -361.97     5.28
+  7 |    28.64         7.25 |    28.64     0.50  -358.01     7.25
+  8 |    21.63         9.44 |    21.63     0.50  -353.65     9.44
+  9 |    28.73         6.26 |    28.73     0.50  -351.01     6.26
+ 10 |    22.24         9.54 |    22.24     0.50  -348.36     9.54
+ 11 |    31.22         8.31 |    31.22     0.50  -345.21     8.31
+
+
+exp_name:   my_experiment_11-21-19_17-42
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+my_experiment_11-21-19_17-42
+    |                       |          condition 0               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost
+
+
+exp_name:   my_experiment_11-21-19_17-46
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+my_experiment_11-21-19_17-46
+    |                       |          condition 0               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost
+  0 |     0.15         9.86 |     0.15     1.00  -180.54     9.86
+  1 |     0.18         8.13 |     0.18     0.50  -384.50     8.13
+  2 |     0.33         3.90 |     0.33     0.50  -378.55     3.90
+  3 |     0.26        16.84 |     0.26     0.50  -373.81    16.84
+  4 |     0.26         4.07 |     0.26     0.50  -369.83     4.07
+  5 |     0.21         3.24 |     0.21     0.50  -365.75     3.24
+  6 |     0.31         5.28 |     0.31     0.50  -361.97     5.28
+  7 |     0.42         7.25 |     0.42     0.50  -358.01     7.25
+  8 |     0.23         9.44 |     0.23     0.50  -353.65     9.44
+  9 |     0.40         6.26 |     0.40     0.50  -351.01     6.26
+ 10 |     0.25         9.54 |     0.25     0.50  -348.36     9.54
+ 11 |     0.85         8.31 |     0.85     0.50  -345.21     8.31
+
+
+exp_name:   my_experiment_11-21-19_17-59
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+my_experiment_11-21-19_17-59
+    |                       |          condition 0               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost
+  0 |    18.27         4.32 |    18.27     1.00  -180.54     4.32
+  1 |    11.05         2.06 |    11.05     1.25  -525.32     2.06
+  2 |    15.94         2.44 |    15.94     0.50  -640.69     2.44
+  3 |    14.63         1.92 |    14.63     1.21  -635.65     1.92
+  4 |     8.26         3.73 |     8.26     1.55  -622.80     3.73
+  5 |    36.79         1.91 |    36.79     0.50  -618.10     1.91
+  6 |     9.22        11.83 |     9.22     2.50  -603.52    11.83
+  7 |    14.14         6.77 |    14.14     0.50  -692.81     6.77
+  8 |    17.92         9.68 |    17.92     0.50  -628.27     9.68
+  9 |    26.52         7.78 |    26.52     0.50  -597.43     7.78
+ 10 |    14.84        14.23 |    14.84     2.50  -568.69    14.23
+ 11 |     9.35        11.32 |     9.35     0.67  -633.60    11.32
+
+
+exp_name:   my_experiment_11-21-19_18-06
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+my_experiment_11-21-19_18-06
+    |                       |          condition 0               
+itr | avg_cost avg_pol_cost |   cost     step   entropy  pol_cost
+  0 |    25.45         6.39 |    25.45     1.00  -180.54     6.39
+  1 |    41.89         4.78 |    41.89     0.50  -459.74     4.78
+  2 |    55.61         3.95 |    55.61     2.50  -456.78     3.95
+  3 |    29.47         8.38 |    29.47     0.50  -561.03     8.38
+  4 |    41.74         5.25 |    41.74     2.50  -559.67     5.25
+  5 |    19.72         6.10 |    19.72     3.00  -599.64     6.10
+  6 |    87.84         3.52 |    87.84     0.50  -548.61     3.52
+  7 |    22.48       879.16 |    22.48     2.50  -463.87   879.16
+  8 |    58.82       337.80 |    58.82     0.50  -431.04   337.80
+  9 |    49.24        39.76 |    49.24     0.50  -387.75    39.76
+ 10 |    42.48        73.07 |    42.48     0.96  -375.87    73.07
+ 11 |   105.76        16.96 |   105.76     0.50  -353.81    16.96
+
+
+exp_name:   my_experiment_11-28-19_17-05
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+
+
+exp_name:   my_experiment_11-28-19_17-06
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+
+
+exp_name:   my_experiment_11-28-19_17-08
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+
+
+exp_name:   my_experiment_11-28-19_17-08
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+
+
+
+exp_name:   my_experiment_11-28-19_17-09
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 1
+samples:    20
+

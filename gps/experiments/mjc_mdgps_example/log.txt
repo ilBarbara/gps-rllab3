@@ -1,0 +1,170 @@
+
+
+exp_name:   my_experiment_10-30-19_17-37
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_10-30-19_17-44
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-04-19_20-55
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-04-19_22-56
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-05-19_00-21
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-05-19_00-27
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-05-19_00-28
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-05-19_01-16
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-05-19_01-21
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-06-19_01-56
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-06-19_01-58
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-06-19_02-02
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-06-19_21-37
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-19-19_02-59
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-19-19_03-00
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-19-19_04-00
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
+
+
+exp_name:   my_experiment_11-19-19_15-35
+alg_type:   AlgorithmMDGPS
+alg_dyn:    DynamicsLRPrior
+alg_cost:   CostSum(CostAction, CostFK, CostFK)
+iterations: 12
+conditions: 4
+samples:    5
+
