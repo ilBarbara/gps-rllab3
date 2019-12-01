@@ -1,0 +1,6 @@
+['/home2/wsdm/gyy/sjh_project/gps-tf1.3.0/python/gps', '/home2/wsdm/gyy/sjh_project/gps-tf1.3.0', '/path/to/gps/build/lib', '/home2/wsdm/anaconda3/envs/gyy-py27/lib/python27.zip', '/home2/wsdm/anaconda3/envs/gyy-py27/lib/python2.7', '/home2/wsdm/anaconda3/envs/gyy-py27/lib/python2.7/plat-linux2', '/home2/wsdm/anaconda3/envs/gyy-py27/lib/python2.7/lib-tk', '/home2/wsdm/anaconda3/envs/gyy-py27/lib/python2.7/lib-old', '/home2/wsdm/anaconda3/envs/gyy-py27/lib/python2.7/lib-dynload', '/home2/wsdm/anaconda3/envs/gyy-py27/lib/python2.7/site-packages', '/home2/wsdm/anaconda3/envs/gyy-py27/lib/python2.7/site-packages/Box2D-2.3.2-py2.7-linux-x86_64.egg', '/home2/wsdm/gyy/sjh_project/gps-tf1.3.0/build/lib', 'python']
+/home2/wsdm/gyy/sjh_project/gps-tf1.3.0/experiments/mjc_mdgps_example/hyperparams.py
+Error: Unable to open display "localhost:12.0".
+  GraphicsWindow has not been created successfully.
+A Unable to open display "localhost:12.0"
+Viewer::realize() - failed to set up any windows
