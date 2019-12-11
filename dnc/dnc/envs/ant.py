@@ -28,9 +28,9 @@ class AntEnv(KMeansEnv, Serializable):
             self.model.data.qvel.flat,
             np.clip(self.model.data.cfrc_ext, -1, 1).flat,
             self.get_body_xmat("torso").flat,
-            self.goal,
+            self.originpos,
            current_position,
-           current_position[:2]-self.goal
+           current_position[:2]-self.originpos
         ]).reshape(-1)
 
     def step(self, action):
@@ -73,6 +73,7 @@ class AntEnv(KMeansEnv, Serializable):
         qvel[9:12] = 0
 
         self.goal = self.propose()
+        self.originpos = np.array([0, 0])
         qpos[-7:-5] = self.goal
         
         self.set_state(qpos.reshape(-1), qvel)

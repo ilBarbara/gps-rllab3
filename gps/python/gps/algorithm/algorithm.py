@@ -157,11 +157,16 @@ class Algorithm(object):
             for i in range(100):
                 tgtpos[i] = [0.6, 0.2, 0.1]
             '''
+            eept = sample.get(END_EFFECTOR_POINTS)
             eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
-
+            sample_u = sample.get_U()
+            cfrc_ext = np.concatenate((eept[:, 26:66], eepv[:, 0:50]), axis = 1)
             vec = eepv[:, 64:66]            
-            dist = np.sum(vec ** 2, axis=1)
-            l = dist
+            dist = np.sum(np.square(vec), axis=1) / 25
+            ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u), axis = 1)
+            contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
+            
+            l = -dist + ctrl_cost + contact_cost
 
             #fetchdist = np.sum((boxpos - fingerpos) ** 2, axis=1)
             #liftdist = np.sum((boxpos - tgtpos) ** 2, axis=1)
@@ -173,24 +178,14 @@ class Algorithm(object):
 
         for n in range(N):
             for t in range(T):
-                '''
-                cv[n][t][9:12] = [-1.2, -0.4, -0.2]
-                Cm[n][t][9][9] = 2
-                Cm[n][t][9][31] = -1
-                Cm[n][t][10][10] = 2
-                Cm[n][t][10][32] = -1
-                Cm[n][t][11][11] = 2
-                Cm[n][t][11][33] = -1
-                Cm[n][t][31][9] = -1
-                Cm[n][t][31][31] = 1
-                Cm[n][t][32][10] = -1
-                Cm[n][t][32][32] = 1            
-                Cm[n][t][33][11] = -1
-                Cm[n][t][33][33] = 1
-                '''
-                Cm[n][t][146][146] = 1
-                Cm[n][t][147][147] = 1
-
+                for i in range(42, 132):
+                    Cm[n][t][i][i] = 0.5 * 1e-3
+                for i in range(148, 156):
+                    Cm[n][t][i][i] = 0.5 * 1e-2
+                    
+                Cm[n][t][146][146] = -0.04
+                Cm[n][t][147][147] = -0.04
+                
             '''
             l, lx, lu, lxx, luu, lux = self.cost[cond].eval(sample)
             cc[n, :] = l

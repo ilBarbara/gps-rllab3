@@ -15,6 +15,10 @@ import theano
 import theano.tensor as TT
 from lasagne.updates import adam
 
+import time
+import pygame
+from rllab.misc.resolve import load_class
+
 # Environment Imports
 from sandbox.rocky.tf.envs.base import TfEnv
 from rllab.envs.normalized_env import normalize
@@ -74,7 +78,7 @@ class AgentRllab3Ant(Agent):
         # Initialize Mujoco worlds. If there's only one xml file, create a single world object,
         # otherwise create a different world for each condition.
         for i in range(self._hyperparams['conditions']):
-            self._world.append(TfEnv(normalize(dnc_envs.create_stochastic('ant'))))
+            self._world.append(TfEnv(normalize(dnc_envs.create_deterministic('ant'))))
         # Initialize x0.
         self.x0 = []
         for i in range(self._hyperparams['conditions']):
@@ -113,6 +117,9 @@ class AgentRllab3Ant(Agent):
                 var = self._hyperparams['noisy_body_var'][condition][i]
                 self._model[condition]['body_pos'][idx, :] += \
                         var * np.random.randn(1, 3)
+
+        timestep = 0.05
+        speedup = 1
         # Take the sample.
         for t in range(self.T):
             X_t = new_sample.get_X(t=t)       #get state from _data in sample class
@@ -122,7 +129,12 @@ class AgentRllab3Ant(Agent):
             
             if (t + 1) < self.T:
                 mj_X, reward, terminal, _ = self._world[condition].step(mj_U)
-                
+
+                if verbose:
+                    self._world[condition].render()
+                    time.sleep(timestep / speedup)
+
+                # import time as ttime      
                 #self._data = self._world[condition].get_data()     #get data from mj_world
                 self._set_sample(new_sample, mj_X, reward, t, condition, feature_fn=feature_fn)
         new_sample.set(ACTION, U)

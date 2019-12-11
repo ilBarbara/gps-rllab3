@@ -41,13 +41,17 @@ class CostSum(Cost):
         
         l = fetchdist + liftdist
         '''
-        #l = fetchdist
 
+        eept = sample.get(END_EFFECTOR_POINTS)
         eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
-
+        sample_u = sample.get_U()
+        cfrc_ext = np.concatenate((eept[:, 26:66], eepv[:, 0:50]), axis = 1)
         vec = eepv[:, 64:66]            
-        dist = np.sum(vec ** 2, axis=1)
-        l = dist
+        dist = np.sum(np.square(vec), axis=1) / 5
+        ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u), axis = 1)
+        contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
+        
+        l = -dist + ctrl_cost + contact_cost
         
         lx, lu, lxx, luu, lux = 0, 0, 0, 0, 0
 
