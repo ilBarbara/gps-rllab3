@@ -19,7 +19,7 @@ import traceback
 
 # Add gps/python to path so that imports work.
 #sys.path.remove('/home2/wsdm/yy/gps/gps-tf1.3.0/python')
-#sys.path.remove('/home2/wsdm/yy/gps/gps-tf1.3.0/build/lib')
+sys.path.remove('/home2/wsdm/yy/gps/gps-tf1.3.0/build/lib')
 sys.path.append('../build/lib')
 sys.path.append('/'.join(str.split(__file__, '/')[:-2]))
 print (sys.path)
@@ -27,6 +27,7 @@ print (sys.path)
 from gps.gui.output_logger import GPSOutputLogger
 from gps.utility.data_logger import DataLogger
 from gps.sample.sample_list import SampleList
+import rllab.misc.logger as logger
 
 
 class GPSMain(object):
@@ -77,6 +78,7 @@ class GPSMain(object):
             itr_start = self._initialize(itr_load)
 
             for itr in range(itr_start, self._hyperparams['iterations']):
+                logger.record_tabular('Iteration', itr)
                 for cond in self._train_idx:
                     for i in range(self._hyperparams['num_samples']):
                         self._take_sample(itr, cond, i)
