@@ -6,6 +6,7 @@ from gps.algorithm.cost.cost import Cost
 from gps.proto.gps_pb2 import JOINT_ANGLES, JOINT_VELOCITIES, \
         END_EFFECTOR_POINTS, END_EFFECTOR_POINT_VELOCITIES
 import numpy as np
+import rllab.misc.logger as logger
 
 class CostSum(Cost):
     """ A wrapper cost function that adds other cost functions. """
@@ -45,13 +46,28 @@ class CostSum(Cost):
         eept = sample.get(END_EFFECTOR_POINTS)
         eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
         sample_u = sample.get_U()
-        cfrc_ext = np.concatenate((eept[:, 26:66], eepv[:, 0:50]), axis = 1)
-        vec = eepv[:, 64:66]            
-        dist = np.sum(np.square(vec), axis=1) / 5
+        cfrc_ext = np.concatenate((eept[:, 13:56], eepv[:, 0:41]), axis = 1)
+        # vec = eepv[:, 64:66]            
+        # dist = np.sum(np.square(vec), axis=1) / 5
+        forward_reward = eepv[:, 53]
         ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u), axis = 1)
-        contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
+        # contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
+        survive_reward = 0.5
         
-        l = -dist + ctrl_cost + contact_cost
+        l = -forward_reward + ctrl_cost - survive_reward
+
+        prefix=''
+        logger.record_tabular('PolReturn', -sum(l))
+
+        ave_vel = np.mean(forward_reward)
+        min_vel = np.min(forward_reward)
+        max_vel = np.max(forward_reward)
+        std_vel = np.std(forward_reward)
+        logger.record_tabular(prefix+'PolAverageVelocity', ave_vel)
+        logger.record_tabular(prefix+'PolMinVelocity', min_vel)
+        logger.record_tabular(prefix+'PolMaxVelocity', max_vel)
+        logger.record_tabular(prefix+'PolStdVelocity', std_vel)
+        logger.dump_tabular(with_prefix=False)
         
         lx, lu, lxx, luu, lux = 0, 0, 0, 0, 0
 

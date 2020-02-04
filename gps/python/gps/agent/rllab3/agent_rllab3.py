@@ -20,9 +20,11 @@ import pygame
 from rllab.misc.resolve import load_class
 
 # Environment Imports
-from sandbox.rocky.tf.envs.base import TfEnv
-from rllab.envs.normalized_env import normalize
-import dnc.envs as dnc_envs
+# from sandbox.rocky.tf.envs.base import TfEnv
+# from rllab.envs.normalized_env import normalize
+# import dnc.envs as dnc_envs
+from rllab.envs.mujoco.ant_env import AntEnv
+import pdb
 
 
 """ This file defines an agent for the MuJoCo simulator environment. """
@@ -78,7 +80,7 @@ class AgentRllab3Ant(Agent):
         # Initialize Mujoco worlds. If there's only one xml file, create a single world object,
         # otherwise create a different world for each condition.
         for i in range(self._hyperparams['conditions']):
-            self._world.append(TfEnv(normalize(dnc_envs.create_deterministic('ant'))))
+            self._world.append(AntEnv())
         # Initialize x0.
         self.x0 = []
         for i in range(self._hyperparams['conditions']):
@@ -130,9 +132,9 @@ class AgentRllab3Ant(Agent):
             if (t + 1) < self.T:
                 mj_X, reward, terminal, _ = self._world[condition].step(mj_U)
 
-                if verbose:
-                    self._world[condition].render()
-                    time.sleep(timestep / speedup)
+                # if verbose:
+                    # self._world[condition].render()
+                    # time.sleep(timestep / speedup)
 
                 # import time as ttime      
                 #self._data = self._world[condition].get_data()     #get data from mj_world
@@ -174,8 +176,8 @@ class AgentRllab3Ant(Agent):
         data = self._world[condition].reset()          #get data from mj_world, condition-specific
         sample.set(JOINT_ANGLES, data[0:8], t=0)    #Set _data in sample class
         sample.set(JOINT_VELOCITIES, data[8:16], t=0)
-        sample.set(END_EFFECTOR_POINTS, data[16:82], t=0)
-        sample.set(END_EFFECTOR_POINT_VELOCITIES, data[82:148], t=0)
+        sample.set(END_EFFECTOR_POINTS, data[16:72], t=0)
+        sample.set(END_EFFECTOR_POINT_VELOCITIES, data[72:128], t=0)
         #sample.set(END_EFFECTOR_POINT_JACOBIANS, np.array(0.0), t=0)
 
         return sample
@@ -192,8 +194,8 @@ class AgentRllab3Ant(Agent):
         """
         sample.set(JOINT_ANGLES, mj_X[0:8], t=t+1)   #Set _data in sample class
         sample.set(JOINT_VELOCITIES, mj_X[8:16], t=t+1)
-        sample.set(END_EFFECTOR_POINTS, mj_X[16:82], t=t+1)
-        sample.set(END_EFFECTOR_POINT_VELOCITIES, mj_X[82:148], t=t+1)
+        sample.set(END_EFFECTOR_POINTS, mj_X[16:72], t=t+1)
+        sample.set(END_EFFECTOR_POINT_VELOCITIES, mj_X[72:128], t=t+1)
         #sample.set(END_EFFECTOR_POINT_JACOBIANS, np.array(reward), t=t+1)
 
     def _get_image_from_obs(self, obs):

@@ -31,8 +31,8 @@ from gps.gui.config import generate_experiment_info
 SENSOR_DIMS = {
     JOINT_ANGLES: 8,
     JOINT_VELOCITIES: 8,
-    END_EFFECTOR_POINTS: 66,
-    END_EFFECTOR_POINT_VELOCITIES: 66,
+    END_EFFECTOR_POINTS: 56,
+    END_EFFECTOR_POINT_VELOCITIES: 56,
     ACTION: 8,
 }
 
@@ -78,7 +78,7 @@ agent = {
 algorithm = {
     'type': AlgorithmMDGPS,
     'conditions': common['conditions'],
-    'iterations': 100,
+    'iterations': 1000,
     'kl_step': 1.0,
     'min_step_mult': 0.5,
     'max_step_mult': 3.0,

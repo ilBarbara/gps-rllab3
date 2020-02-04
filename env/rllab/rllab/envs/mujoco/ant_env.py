@@ -7,6 +7,7 @@ from rllab.misc import logger
 from rllab.envs.mujoco.mujoco_env import q_mult, q_inv
 import numpy as np
 import math
+import pdb
 
 
 class AntEnv(MujocoEnv, Serializable):
@@ -19,12 +20,19 @@ class AntEnv(MujocoEnv, Serializable):
         Serializable.__init__(self, *args, **kwargs)
 
     def get_current_obs(self):
+        # pdb.set_trace()
+        cfrc_ext_ = np.clip(self.model.data.cfrc_ext, -1, 1) # (14,6)
+        xmat_ = self.get_body_xmat("torso")                  # (3,3)
+        com_ = self.get_body_com("torso")                    # 3
+        comvel_ = self.get_body_comvel("torso")              # 3
+        comvel_[2] = 1
         return np.concatenate([
             self.model.data.qpos.flat,
             self.model.data.qvel.flat,
-            np.clip(self.model.data.cfrc_ext, -1, 1).flat,
-            self.get_body_xmat("torso").flat,
-            self.get_body_com("torso"),
+            cfrc_ext_.flat,
+            xmat_.flat,
+            com_,
+            comvel_
         ]).reshape(-1)
 
     def step(self, action):

@@ -12,6 +12,7 @@ from gps.algorithm.algorithm_utils import IterationData, TrajectoryInfo
 from gps.utility.general_utils import extract_condition
 from gps.proto.gps_pb2 import JOINT_ANGLES, JOINT_VELOCITIES, \
         END_EFFECTOR_POINTS, END_EFFECTOR_POINT_VELOCITIES
+import rllab.misc.logger as logger
 
 import pdb
 
@@ -144,6 +145,7 @@ class Algorithm(object):
         cc = np.zeros((N, T))
         cv = np.zeros((N, T, dX+dU))
         Cm = np.zeros((N, T, dX+dU, dX+dU))
+        cvel = np.zeros((N, T))
         for n in range(N):
             sample = self.cur[cond].sample_list[n]
             # Get costs.
@@ -160,13 +162,15 @@ class Algorithm(object):
             eept = sample.get(END_EFFECTOR_POINTS)
             eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
             sample_u = sample.get_U()
-            cfrc_ext = np.concatenate((eept[:, 26:66], eepv[:, 0:50]), axis = 1)
-            vec = eepv[:, 64:66]            
-            dist = np.sum(np.square(vec), axis=1) / 25
+            cfrc_ext = np.concatenate((eept[:, 13:56], eepv[:, 0:41]), axis = 1)
+            # vec = eepv[:, 64:66]            
+            # dist = np.sum(np.square(vec), axis=1) / 25
+            forward_reward = eepv[:, 53]
             ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u), axis = 1)
-            contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
+            # contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
+            survive_reward = 0.5
             
-            l = -dist + ctrl_cost + contact_cost
+            l = -forward_reward + ctrl_cost - survive_reward
 
             #fetchdist = np.sum((boxpos - fingerpos) ** 2, axis=1)
             #liftdist = np.sum((boxpos - tgtpos) ** 2, axis=1)
@@ -175,16 +179,17 @@ class Algorithm(object):
             #l = fetchdist
             cc[n, :] = l
             cs[n, :] = l
+            cvel[n, :] = forward_reward
 
         for n in range(N):
             for t in range(T):
-                for i in range(42, 132):
-                    Cm[n][t][i][i] = 0.5 * 1e-3
-                for i in range(148, 156):
+                # for i in range(29, 113):
+                #    Cm[n][t][i][i] = 0.5 * 1e-3
+                for i in range(128, 136):
                     Cm[n][t][i][i] = 0.5 * 1e-2
                     
-                Cm[n][t][146][146] = -0.04
-                Cm[n][t][147][147] = -0.04
+                Cm[n][t][125][127] = -0.5
+                Cm[n][t][127][125] = -0.5
                 
             '''
             l, lx, lu, lxx, luu, lux = self.cost[cond].eval(sample)
@@ -217,6 +222,24 @@ class Algorithm(object):
         self.cur[cond].traj_info.Cm = np.mean(Cm, 0)  # Quadratic term (matrix).
 
         self.cur[cond].cs = cs  # True value of cost.
+
+        prefix=''
+        undiscounted_returns = [-sum(path) for path in cs]
+        logger.record_tabular('AverageReturn', np.mean(undiscounted_returns))
+        logger.record_tabular('NumTrajs', len(cs))
+        logger.record_tabular('StdReturn', np.std(undiscounted_returns))
+        logger.record_tabular('MaxReturn', np.max(undiscounted_returns))
+        logger.record_tabular('MinReturn', np.min(undiscounted_returns))
+
+        ave_vel = np.array([np.mean(path) for path in cvel])
+        min_vel = np.array([np.min(path) for path in cvel])
+        max_vel = np.array([np.max(path) for path in cvel])
+        std_vel = np.array([np.std(path) for path in cvel])
+        logger.record_tabular(prefix+'AverageAverageVelocity', np.mean(ave_vel))
+        logger.record_tabular(prefix+'AverageMinVelocity', np.mean(min_vel))
+        logger.record_tabular(prefix+'AverageMaxVelocity', np.mean(max_vel))
+        logger.record_tabular(prefix+'AverageStdVelocity', np.mean(std_vel))
+        
 
     def _advance_iteration_variables(self):
         """
