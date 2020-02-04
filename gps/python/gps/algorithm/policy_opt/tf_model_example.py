@@ -79,7 +79,7 @@ def tf_network(dim_input=27, dim_output=7, batch_size=25, network_config=None):
     Returns:
         a TfMap object used to serialize, inputs, outputs, and loss.
     """
-    n_layers = 2
+    n_layers = 4
     #if 'n_layers' not in network_config else network_config['n_layers'] + 1
     dim_hidden = (n_layers - 1) * [40]
     #if 'dim_hidden' not in network_config else network_config['dim_hidden']
