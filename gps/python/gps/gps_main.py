@@ -63,7 +63,7 @@ class GPSMain(object):
 
 
         config['algorithm']['agent'] = self.agent
-        pdb.set_trace()
+        # pdb.set_trace()
         self.algorithm = config['algorithm']['type'](config['algorithm'])
 
     def run(self, itr_load=None):
