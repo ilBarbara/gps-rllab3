@@ -18,8 +18,8 @@ import time
 import traceback
 
 # Add gps/python to path so that imports work.
-#sys.path.remove('/home2/wsdm/yy/gps/gps-tf1.3.0/python')
-sys.path.remove('/home2/wsdm/yy/gps/gps-tf1.3.0/build/lib')
+# sys.path.remove('/home2/wsdm/yy/gps/gps-tf1.3.0/python')
+# sys.path.remove('/home2/wsdm/yy/gps/gps-tf1.3.0/build/lib')
 sys.path.append('../build/lib')
 sys.path.append('/'.join(str.split(__file__, '/')[:-2]))
 print (sys.path)
