@@ -16,4 +16,7 @@ The environments are built in Mujoco 1.31: follow the instructions [here](https:
 source activate rllab3
 cd gps/python
 python gps/gps_main.py rllab3_ant_example
+python gps/gps_main.py rllab3_hopper_example
+python gps/gps_main.py rllab3_hopper_traj_opt
+python gps/gps_main.py rllab3_cheetah_example
 ```
