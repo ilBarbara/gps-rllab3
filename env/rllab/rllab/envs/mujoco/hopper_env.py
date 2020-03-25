@@ -36,16 +36,29 @@ class HopperEnv(MujocoEnv, Serializable):
 
     @overrides
     def get_current_obs(self):
+        comvel_ = self.get_body_comvel("torso")              # 3
+        comvel_[2] = 1
+        return np.concatenate([
+            self.model.data.qpos[0:1].flat,
+            self.model.data.qpos[2:].flat,
+            np.clip(self.model.data.qvel, -10, 10).flat,
+            self.get_body_com("torso").flat,
+            comvel_,
+        ])
+    '''def get_current_obs(self):
+        import IPython
+        print("trying to get observation")
+        IPython.embed()
         return np.concatenate([
             self.model.data.qpos[0:1].flat,
             self.model.data.qpos[2:].flat,
             np.clip(self.model.data.qvel, -10, 10).flat,
             np.clip(self.model.data.qfrc_constraint, -10, 10).flat,
             self.get_body_com("torso").flat,
-        ])
+        ])'''
 
     @overrides
-    def step(self, action):
+    def step(self, action, collectingInitialData=False):
         self.forward_dynamics(action)
         next_obs = self.get_current_obs()
         lb, ub = self.action_bounds
@@ -54,11 +67,26 @@ class HopperEnv(MujocoEnv, Serializable):
         reward = vel + self.alive_coeff - \
             0.5 * self.ctrl_cost_coeff * np.sum(np.square(action / scaling))
         state = self._state
-        notdone = np.isfinite(state).all() and \
-            (np.abs(state[3:]) < 100).all() and (state[0] > .7) and \
-            (abs(state[2]) < .2)
+
+        if(collectingInitialData):
+            notdone=True
+        else:
+            notdone = np.isfinite(state).all() and \
+                (np.abs(state[3:]) < 100).all() and (state[0] > .7) and \
+                (abs(state[2]) < .3)
+            #state: 0-5 qpos 6-11 qvel
+                #0 is height, stay up
+                #2 is orientation, don't turn too much (neg lean back, pos lean forward)
+
+            '''notdone = np.isfinite(state).all() and \
+                (np.abs(state[3:]) < 100).all() and (state[0] > .7) and \
+                (abs(state[2]) < .2)'''
         done = not notdone
         return Step(next_obs, reward, done)
+
+    def get_my_sim_state(self):
+        my_sim_state=np.squeeze(np.concatenate((self.model.data.qpos, self.model.data.qvel, self.model.data.qacc, self.model.data.ctrl)))
+        return my_sim_state
 
     @overrides
     def log_diagnostics(self, paths):

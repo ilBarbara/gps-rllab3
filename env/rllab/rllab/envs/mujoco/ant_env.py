@@ -27,8 +27,8 @@ class AntEnv(MujocoEnv, Serializable):
         comvel_ = self.get_body_comvel("torso")              # 3
         comvel_[2] = 1
         return np.concatenate([
-            self.model.data.qpos.flat,
-            self.model.data.qvel.flat,
+            self.model.data.qpos.flat,                       # 15
+            self.model.data.qvel.flat,                       # 14
             cfrc_ext_.flat,
             xmat_.flat,
             com_,

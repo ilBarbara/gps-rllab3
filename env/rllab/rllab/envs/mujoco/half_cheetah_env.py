@@ -20,10 +20,14 @@ class HalfCheetahEnv(MujocoEnv, Serializable):
         Serializable.__init__(self, *args, **kwargs)
 
     def get_current_obs(self):
+        comvel_ = self.get_body_comvel("torso")              # 3
+        comvel_[2] = 1
+        com_ = self.get_body_com("torso")                    # 3
         return np.concatenate([
-            self.model.data.qpos.flatten()[1:],
-            self.model.data.qvel.flat,
-            self.get_body_com("torso").flat,
+            self.model.data.qpos.flatten()[1:],              # 8
+            self.model.data.qvel.flat,                       # 9
+            com_.flat,
+            comvel_,
         ])
 
     def get_body_xmat(self, body_name):

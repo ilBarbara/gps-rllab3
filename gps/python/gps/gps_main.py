@@ -97,6 +97,7 @@ class GPSMain(object):
                 #pdb.set_trace()
                 pol_sample_lists = self._take_policy_samples()
                 self._log_data(itr, traj_sample_lists, pol_sample_lists)
+                logger.dump_tabular(with_prefix=False)
         except Exception as e:
             traceback.print_exception(*sys.exc_info())
         finally:
