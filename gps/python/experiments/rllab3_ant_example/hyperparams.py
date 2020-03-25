@@ -66,7 +66,7 @@ agent = {
     'pos_body_offset': [np.array([-0.08, -0.08, 0])],
     #[[np.array([-0.08, -0.08, 0])], [np.array([-0.08, 0.08, 0])],
     #[np.array([0.08, 0.08, 0])], [np.array([0.08, -0.08, 0])]],
-    'T': 100,
+    'T': 200,
     'sensor_dims': SENSOR_DIMS,
     'state_include': [JOINT_ANGLES, JOINT_VELOCITIES, END_EFFECTOR_POINTS,
                       END_EFFECTOR_POINT_VELOCITIES],
