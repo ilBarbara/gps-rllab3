@@ -23,7 +23,7 @@ from rllab.misc.resolve import load_class
 # from sandbox.rocky.tf.envs.base import TfEnv
 # from rllab.envs.normalized_env import normalize
 # import dnc.envs as dnc_envs
-from rllab.envs.mujoco.hopper_env import HopperEnv
+from rllab.envs.mujoco.swimmer_env import SwimmerEnv
 import pdb
 
 
@@ -46,7 +46,7 @@ from gps.proto.gps_pb2 import JOINT_ANGLES, JOINT_VELOCITIES, \
 from gps.sample.sample import Sample
 
 
-class AgentRllab3Hopper(Agent):
+class AgentRllab3Swimmer(Agent):
     """
     All communication between the algorithms and MuJoCo is done through
     this class.
@@ -80,9 +80,10 @@ class AgentRllab3Hopper(Agent):
         # Initialize Mujoco worlds. If there's only one xml file, create a single world object,
         # otherwise create a different world for each condition.
         for i in range(self._hyperparams['conditions']):
-            self._world.append(HopperEnv())
+            self._world.append(SwimmerEnv())
         # Initialize x0.
         self.x0 = []
+        # pdb.set_trace()
         for i in range(self._hyperparams['conditions']):
             self.x0.append(self._world[i].reset())
         
@@ -120,7 +121,7 @@ class AgentRllab3Hopper(Agent):
                 self._model[condition]['body_pos'][idx, :] += \
                         var * np.random.randn(1, 3)
 
-        timestep = 0.04
+        timestep = 0.01
         speedup = 1
         # Take the sample.
         for t in range(self.T):
@@ -131,7 +132,8 @@ class AgentRllab3Hopper(Agent):
             
             if (t + 1) < self.T:
                 mj_X, reward, terminal, _ = self._world[condition].step(mj_U)
-
+                
+                # pdb.set_trace()
                 # if verbose:
                     # self._world[condition].render()
                     # time.sleep(timestep / speedup)
@@ -173,11 +175,12 @@ class AgentRllab3Hopper(Agent):
         #self._init(condition)
 
         # Initialize sample with stuff from _data
+        # pdb.set_trace()
         data = self._world[condition].reset()          #get data from mj_world, condition-specific
         sample.set(END_EFFECTOR_POINTS, data[0:5], t=0)    #Set _data in sample class
-        sample.set(JOINT_VELOCITIES, data[5:11], t=0)
-        sample.set(JOINT_ANGLES, data[11:14], t=0)
-        sample.set(END_EFFECTOR_POINT_VELOCITIES, data[14:18], t=0)
+        sample.set(JOINT_VELOCITIES, data[5:10], t=0)
+        sample.set(JOINT_ANGLES, data[10:13], t=0)
+        sample.set(END_EFFECTOR_POINT_VELOCITIES, data[13:17], t=0)
         #sample.set(END_EFFECTOR_POINT_JACOBIANS, np.array(0.0), t=0)
 
         return sample
@@ -193,10 +196,9 @@ class AgentRllab3Hopper(Agent):
             feature_fn: function to compute image features from the observation.
         """
         sample.set(END_EFFECTOR_POINTS, mj_X[0:5], t=t+1)    #Set _data in sample class
-        sample.set(JOINT_VELOCITIES, mj_X[5:11], t=t+1)
-        sample.set(JOINT_ANGLES, mj_X[11:14], t=t+1)
-        sample.set(END_EFFECTOR_POINT_VELOCITIES, mj_X[14:18], t=t+1)
-        #sample.set(END_EFFECTOR_POINT_JACOBIANS, np.array(reward), t=t+1)
+        sample.set(JOINT_VELOCITIES, mj_X[5:10], t=t+1)
+        sample.set(JOINT_ANGLES, mj_X[10:13], t=t+1)
+        sample.set(END_EFFECTOR_POINT_VELOCITIES, mj_X[13:17], t=t+1)
 
     def _get_image_from_obs(self, obs):
         imstart = 0

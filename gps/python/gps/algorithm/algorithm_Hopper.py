@@ -153,7 +153,8 @@ class Algorithm(object):
             eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES) #velocity on the x-axis
             forward_reward = eepv[:, 0]
             # survive_reward = 1
-            ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u), axis = 1)
+            scaling = 200
+            ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u / scaling), axis = 1)
             l = -forward_reward + ctrl_cost
             # Get costs.
 
@@ -165,11 +166,11 @@ class Algorithm(object):
             for t in range(T):
                 # for i in range(29, 113):
                 #    Cm[n][t][i][i] = 0.5 * 1e-3
-                for i in range(17, 20):
-                    Cm[n][t][i][i] = 0.5 * 1e-2
+                for i in range(18, 21):
+                    Cm[n][t][i][i] = 0.5 * 1e-2 * 0.000025
                     
-                Cm[n][t][14][16] = -0.5
-                Cm[n][t][16][14] = -0.5
+                Cm[n][t][14][17] = -0.5
+                Cm[n][t][17][14] = -0.5
                 
             '''
             l, lx, lu, lxx, luu, lux = self.cost[cond].eval(sample)

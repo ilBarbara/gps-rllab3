@@ -10,10 +10,10 @@ import numpy as np
 from gps.algorithm.config import ALG
 from gps.algorithm.algorithm_utils import IterationData, TrajectoryInfo
 from gps.utility.general_utils import extract_condition
-from gps.proto.gps_pb2 import JOINT_ANGLES, JOINT_VELOCITIES, \
+from gps.proto.gps_pb2 import  JOINT_VELOCITIES, \
         END_EFFECTOR_POINTS, END_EFFECTOR_POINT_VELOCITIES
 import rllab.misc.logger as logger
-
+from rllab.envs.mujoco.half_cheetah_env import HalfCheetahEnv
 import pdb
 
 LOGGER = logging.getLogger(__name__)
@@ -65,6 +65,7 @@ class Algorithm(object):
             init_traj_distr = extract_condition(
                 self._hyperparams['init_traj_distr'], self._cond_idx[m]
             )
+            # pdb.set_trace()
             self.cur[m].traj_distr = init_traj_distr['type'](init_traj_distr)
 
         self.traj_opt = hyperparams['traj_opt']['type'](
@@ -148,49 +149,28 @@ class Algorithm(object):
         cvel = np.zeros((N, T))
         for n in range(N):
             sample = self.cur[cond].sample_list[n]
-            # Get costs.
-            '''
-            jv = sample.get(JOINT_VELOCITIES)
-            eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
-
-            boxpos = jv[:, 2:5]
-            fingerpos = eepv[:, 7:10]
-            tgtpos = np.zeros((100,3))
-            for i in range(100):
-                tgtpos[i] = [0.6, 0.2, 0.1]
-            '''
-            eept = sample.get(END_EFFECTOR_POINTS)
-            eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES)
             sample_u = sample.get_U()
-            cfrc_ext = np.concatenate((eept[:, 13:56], eepv[:, 0:41]), axis = 1)
-            # vec = eepv[:, 64:66]            
-            # dist = np.sum(np.square(vec), axis=1) / 25
-            forward_reward = eepv[:, 53]
-            scaling = 150
-            ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u / scaling), axis = 1)
-            # contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
-            survive_reward = 0.5
-            
-            l = -forward_reward + ctrl_cost - survive_reward
+            # jp = sample.get(END_EFFECTOR_POINTS) #8 dims
+            eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES) #velocity on the x-axis
+            forward_reward = eepv[:, 0]
+            scaling = 50
+            ctrl_cost = 0.5 * np.sum(np.square(sample_u / scaling), axis = 1)
+            l = -forward_reward + ctrl_cost    
+            # Get costs.
 
-            #fetchdist = np.sum((boxpos - fingerpos) ** 2, axis=1)
-            #liftdist = np.sum((boxpos - tgtpos) ** 2, axis=1)
-
-            #l = fetchdist + liftdist
-            #l = fetchdist
             cc[n, :] = l
             cs[n, :] = l
             cvel[n, :] = forward_reward
-
+            
         for n in range(N):
             for t in range(T):
                 # for i in range(29, 113):
                 #    Cm[n][t][i][i] = 0.5 * 1e-3
-                for i in range(128, 136):
-                    Cm[n][t][i][i] = 0.5 * 1e-2 / scaling / scaling
+                for i in range(17, 19):
+                    Cm[n][t][i][i] = 0.5 * 0.0004
                     
-                Cm[n][t][125][127] = -0.5
-                Cm[n][t][127][125] = -0.5
+                Cm[n][t][13][16] = -0.5
+                Cm[n][t][16][13] = -0.5
                 
             '''
             l, lx, lu, lxx, luu, lux = self.cost[cond].eval(sample)

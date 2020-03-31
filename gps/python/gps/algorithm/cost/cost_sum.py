@@ -50,7 +50,8 @@ class CostSum(Cost):
         # vec = eepv[:, 64:66]            
         # dist = np.sum(np.square(vec), axis=1) / 5
         forward_reward = eepv[:, 53]
-        ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u), axis = 1)
+        scaling = 150
+        ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u / scaling), axis = 1)
         # contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
         # survive_reward = 0.5
         

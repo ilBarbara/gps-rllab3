@@ -37,13 +37,14 @@ class HopperEnv(MujocoEnv, Serializable):
     @overrides
     def get_current_obs(self):
         comvel_ = self.get_body_comvel("torso")              # 3
-        comvel_[2] = 1
+        adddim_ = np.ones(1)                                 # 1
         return np.concatenate([
             self.model.data.qpos[0:1].flat,
             self.model.data.qpos[2:].flat,
             np.clip(self.model.data.qvel, -10, 10).flat,
             self.get_body_com("torso").flat,
-            comvel_,
+            comvel_.flat,
+            adddim_,
         ])
     '''def get_current_obs(self):
         import IPython

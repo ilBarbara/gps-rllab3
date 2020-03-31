@@ -7,11 +7,11 @@ import numpy as np
 
 from gps import __file__ as gps_filepath
 # from gps.agent.mjc.agent_mjc import AgentMuJoCo
-from gps.agent.rllab3.agent_rllab3Hopper import AgentRllab3Hopper
-from gps.algorithm.algorithm_traj_opt_Hopper import AlgorithmTrajOpt
+from gps.agent.rllab3.agent_rllab3Swimmer import AgentRllab3Swimmer
+from gps.algorithm.algorithm_traj_opt_Swimmer import AlgorithmTrajOpt
 from gps.algorithm.cost.cost_fk import CostFK
 from gps.algorithm.cost.cost_action import CostAction
-from gps.algorithm.cost.cost_sum_Hopper import CostSum
+from gps.algorithm.cost.cost_sum_Swimmer import CostSum
 from gps.algorithm.dynamics.dynamics_lr_prior import DynamicsLRPrior
 from gps.algorithm.dynamics.dynamics_prior_gmm import DynamicsPriorGMM
 from gps.algorithm.traj_opt.traj_opt_lqr_python import TrajOptLQRPython
@@ -22,16 +22,16 @@ from gps.gui.config import generate_experiment_info
 
 SENSOR_DIMS = {
     END_EFFECTOR_POINTS: 5,
-    JOINT_VELOCITIES: 6,
+    JOINT_VELOCITIES: 5,
     JOINT_ANGLES: 3,
     END_EFFECTOR_POINT_VELOCITIES: 4,
-    ACTION: 3,
+    ACTION: 2,
 }
 
-PR2_GAINS = np.array([3.09, 1.08, 0.393])
+PR2_GAINS = np.array([3.09, 1.08])
 
 BASE_DIR = '/'.join(str.split(gps_filepath, '/')[:-2])
-EXP_DIR = BASE_DIR + '/experiments/rllab3_hopper_traj_opt/'
+EXP_DIR = BASE_DIR + '/experiments/rllab3_swimmer_traj_opt/'
 
 
 common = {
@@ -48,10 +48,10 @@ if not os.path.exists(common['data_files_dir']):
     os.makedirs(common['data_files_dir'])
 
 agent = {
-    'type': AgentRllab3Hopper,
-    'filename': './mjc_models/hopper.xml',
-    'x0': np.concatenate([np.array([0.1, 0.1, -1.54]),
-                          np.zeros(3)]),
+    'type': AgentRllab3Swimmer,
+    'filename': './mjc_models/swimmer.xml',
+    'x0': np.concatenate([np.array([0.1, 0.1]),
+                          np.zeros(2)]),
     'dt': 0.02,
     'substeps': 1,
     'conditions': common['conditions'],
