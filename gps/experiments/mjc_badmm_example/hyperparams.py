@@ -36,7 +36,7 @@ SENSOR_DIMS = {
     ACTION: 7,
 }
 
-PR2_GAINS = np.array([3.09, 1.08, 0.393, 0.674, 0.111, 0.152, 0.098])
+PR2_GAINS = np.array([3.09, 1.08, 0.393, 0.674, 0.111, 0.152, 0.098, 0.1])
 
 BASE_DIR = '/'.join(str.split(gps_filepath, '/')[:-2])
 EXP_DIR = BASE_DIR + '/../experiments/mjc_badmm_example/'
@@ -76,7 +76,7 @@ agent = {
 }
 
 algorithm = {
-    'type': AlgorithmMDGPS,
+    'type': AlgorithmBADMM,
     'conditions': common['conditions'],
     'iterations': 12,
     'lg_step_schedule': np.array([1e-4, 1e-3, 1e-2, 1e-2]),

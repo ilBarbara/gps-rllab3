@@ -38,7 +38,7 @@ SENSOR_DIMS = {
 PR2_GAINS = np.array([3.09, 1.08, 0.393, 0.674, 0.111, 0.152])
 
 BASE_DIR = '/'.join(str.split(gps_filepath, '/')[:-2])
-EXP_DIR = BASE_DIR + '/../experiments/rllab3_cheetah_example/'
+EXP_DIR = BASE_DIR + '/experiments/rllab3_cheetah_example/'
 
 common = {
     'experiment_name': 'my_experiment' + '_' + \

@@ -31,9 +31,9 @@ class CostSum(Cost):
         # jp = sample.get(END_EFFECTOR_POINTS) #joint position
         eepv = sample.get(END_EFFECTOR_POINT_VELOCITIES) #velocity on the x-axis
         forward_reward = eepv[:, 0]
-        survive_reward = 1
+        # survive_reward = 1
         ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u), axis = 1)
-        l = -forward_reward + ctrl_cost - survive_reward        
+        l = -forward_reward + ctrl_cost
             # Get costs.
         prefix=''
         logger.record_tabular('PolReturn', -sum(l))

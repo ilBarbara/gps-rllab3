@@ -52,9 +52,9 @@ class CostSum(Cost):
         forward_reward = eepv[:, 53]
         ctrl_cost = 0.5 * 1e-2 * np.sum(np.square(sample_u), axis = 1)
         # contact_cost = 0.5 * 1e-3 * np.sum(np.square(cfrc_ext), axis = 1)
-        survive_reward = 0.5
+        # survive_reward = 0.5
         
-        l = -forward_reward + ctrl_cost - survive_reward
+        l = -forward_reward + ctrl_cost
 
         prefix=''
         logger.record_tabular('PolReturn', -sum(l))
