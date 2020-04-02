@@ -3,6 +3,7 @@ import numpy as np
 
 from gps.algorithm.policy.policy import Policy
 from gps.utility.general_utils import check_shape
+import pdb
 
 
 class LinearGaussianPolicy(Policy):
@@ -38,8 +39,10 @@ class LinearGaussianPolicy(Policy):
             t: Time step.
             noise: Action noise. This will be scaled by the variance.
         """
+        # pdb.set_trace()
         u = self.K[t].dot(x) + self.k[t]
-        u += self.chol_pol_covar[t].T.dot(noise)
+        u_noise = self.chol_pol_covar[t].T.dot(noise)
+        u += u_noise
         return u
 
     def fold_k(self, noise):

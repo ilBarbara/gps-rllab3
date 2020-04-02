@@ -20,6 +20,7 @@ def generate_noise(T, dU, hyperparams):
     """
     smooth, var = hyperparams['smooth_noise'], hyperparams['smooth_noise_var']
     renorm = hyperparams['smooth_noise_renormalize']
+    noise_scaling = hyperparams['noise_scaling']
     noise = np.random.randn(T, dU)
     if smooth:
         # Smooth noise. This violates the controller assumption, but
@@ -29,7 +30,7 @@ def generate_noise(T, dU, hyperparams):
         if renorm:
             variance = np.var(noise, axis=0)
             noise = noise / np.sqrt(variance)
-    return noise
+    return noise * noise_scaling
 
 
 def setup(value, n):

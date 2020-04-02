@@ -29,7 +29,7 @@ SENSOR_DIMS = {
     END_EFFECTOR_POINTS: 5,
     JOINT_VELOCITIES: 5,
     JOINT_ANGLES: 3,
-    END_EFFECTOR_POINT_VELOCITIES: 4,
+    END_EFFECTOR_POINT_VELOCITIES: 3,
     ACTION: 2,
 }
 
@@ -43,7 +43,7 @@ common = {
     'experiment_dir': EXP_DIR,
     'data_files_dir': EXP_DIR + 'data_files/',
     'log_filename': EXP_DIR + 'log.txt',
-    'conditions': 1,
+    'conditions': 4,
 }
 
 if not os.path.exists(common['data_files_dir']):
@@ -54,8 +54,8 @@ agent = {
     'filename': './mjc_models/half_cheetah.xml',
     'x0': np.concatenate([np.array([0.1, 0.1]),
                           np.zeros(2)]),
-    'dt': 0.01,
-    'substeps': 5,
+    'dt': 0.001,
+    'substeps': 1,
     'conditions': common['conditions'],
     'pos_body_idx': np.array([1]),
     'pos_body_offset': [np.array([0, 0, 0])],
@@ -68,12 +68,13 @@ agent = {
     'obs_include': [JOINT_ANGLES, JOINT_VELOCITIES, END_EFFECTOR_POINTS,
                     END_EFFECTOR_POINT_VELOCITIES],
     'camera_pos': np.array([0., 0., 2., 0., 0.2, 0.5]),
+    'noise_scaling': 0.1,
 }
 
 algorithm = {
     'type': AlgorithmBADMM,
     'conditions': common['conditions'],
-    'iterations': 100,
+    'iterations': 1000,
     'lg_step_schedule': np.array([1e-4, 1e-3, 1e-2, 1e-2]),
     'policy_dual_rate': 0.2,
     'ent_reg_schedule': np.array([1e-3, 1e-3, 1e-2, 1e-1]),
@@ -141,7 +142,7 @@ algorithm['policy_prior'] = {
 
 config = {
     'iterations': algorithm['iterations'],
-    'num_samples': 20,
+    'num_samples': 10,
     'verbose_trials': 1,
     'verbose_policy_trials': 1,
     'common': common,

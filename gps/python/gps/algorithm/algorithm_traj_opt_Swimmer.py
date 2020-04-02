@@ -26,7 +26,7 @@ class AlgorithmTrajOpt(Algorithm):
         # Update dynamics model using all samples.
         self._update_dynamics()
 
-        self._update_step_size()  # KL Divergence step size.
+        self._update_step_size()  # KL Divergence step size.        iteration >= 1
 
         # Run inner loop to compute new policies.
         for _ in range(self._hyperparams['inner_iterations']):

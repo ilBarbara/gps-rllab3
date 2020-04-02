@@ -35,7 +35,7 @@ SENSOR_DIMS = {
     ACTION: 6,
 }
 
-PR2_GAINS = np.array([3.09, 1.08, 0.393, 0.674, 0.111, 0.152])
+PR2_GAINS = np.array([1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 
 BASE_DIR = '/'.join(str.split(gps_filepath, '/')[:-2])
 EXP_DIR = BASE_DIR + '/experiments/rllab3_cheetah_example/'
@@ -58,14 +58,14 @@ agent = {
     'filename': './mjc_models/half_cheetah.xml',
     'x0': np.concatenate([np.array([0.1, 0.1, -1.54, -1.7, 1.54, -0.2]),
                           np.zeros(6)]),
-    'dt': 0.01,
-    'substeps': 5,
+    'dt': 0.001,
+    'substeps': 1,
     'conditions': common['conditions'],
     'pos_body_idx': np.array([1]),
     'pos_body_offset': [np.array([0, 0, 0])],
     #[[np.array([-0.08, -0.08, 0])], [np.array([-0.08, 0.08, 0])],
     #[np.array([0.08, 0.08, 0])], [np.array([0.08, -0.08, 0])]],
-    'T': 100,
+    'T': 200,
     'sensor_dims': SENSOR_DIMS,
     'state_include': [JOINT_ANGLES, JOINT_VELOCITIES, END_EFFECTOR_POINTS,
                       END_EFFECTOR_POINT_VELOCITIES],
@@ -77,7 +77,7 @@ agent = {
 algorithm = {
     'type': AlgorithmMDGPS,
     'conditions': common['conditions'],
-    'iterations': 500,
+    'iterations': 1000,
     'kl_step': 1.0,
     'min_step_mult': 0.5,
     'max_step_mult': 3.0,

@@ -97,6 +97,60 @@ class DynamicsPriorGMM(object):
         # Update GMM.
         self.gmm.update(xux, K)
 
+    def update_delta(self, X, U):
+        """
+        Update prior with additional data.
+        Args:
+            X: A N x T x dX matrix of sequential state data.
+            U: A N x T x dU matrix of sequential control data.
+        """
+        # Constants.
+        T = X.shape[1] - 1
+
+        # Append data to dataset.
+        if self.X is None:
+            self.X = X
+        else:
+            self.X = np.concatenate([self.X, X], axis=0)
+
+        if self.U is None:
+            self.U = U
+        else:
+            self.U = np.concatenate([self.U, U], axis=0)
+
+        # Remove excess samples from dataset.
+        start = max(0, self.X.shape[0] - self._max_samples + 1)
+        self.X = self.X[start:, :]
+        self.U = self.U[start:, :]
+
+        # Compute cluster dimensionality.
+        Do = X.shape[2] + U.shape[2] + X.shape[2]  #TODO: Use Xtgt.
+
+        # Create dataset.
+        N = self.X.shape[0]
+
+        dX = X.shape[2]
+        X_delta = np.zeros((N, T+1, dX))
+        n_count = 0
+        for states_in_single_rollout in self.X:
+            output = states_in_single_rollout[1: T+1, :] \
+                     - states_in_single_rollout[0: T, :]
+            X_delta[n_count, 1:T+1, :] = output
+            n_count = n_count + 1
+
+        xux = np.reshape(
+            np.c_[self.X[:, :T, :], self.U[:, :T, :], X_delta[:, 1:(T+1), :]],
+            [T * N, Do]
+        )
+
+        # Choose number of clusters.
+        K = int(max(2, min(self._max_clusters,
+                           np.floor(float(N * T) / self._min_samp))))
+        LOGGER.debug('Generating %d clusters for dynamics GMM.', K)
+
+        # Update GMM.
+        self.gmm.update(xux, K)
+
     def eval(self, Dx, Du, pts):
         """
         Evaluate prior.

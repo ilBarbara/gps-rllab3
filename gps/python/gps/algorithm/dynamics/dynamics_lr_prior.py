@@ -21,6 +21,12 @@ class DynamicsLRPrior(Dynamics):
         U = samples.get_U()
         self.prior.update(X, U)
 
+    def update_prior_delta(self, samples):
+        """ Update dynamics prior. """
+        X = samples.get_X()
+        U = samples.get_U()
+        self.prior.update_delta(X, U)
+
     def get_prior(self):
         """ Return the dynamics prior. """
         return self.prior
@@ -54,3 +60,43 @@ class DynamicsLRPrior(Dynamics):
             self.fv[t, :] = fv
             self.dyn_covar[t, :, :] = dyn_covar
         return self.Fm, self.fv, self.dyn_covar
+
+    def fit_delta(self, X, U):
+        N, T, dX = X.shape
+        dU = U.shape[2]
+
+        if N == 1:
+            raise ValueError("Cannot fit dynamics on 1 sample")
+
+        X_delta = np.zeros((N, T, dX))
+        n_count = 0
+        for states_in_single_rollout in X:
+            output = states_in_single_rollout[1 : T, :] \
+                     - states_in_single_rollout[0 : T - 1, :]
+            X_delta[n_count, 1:T, :] = output
+            n_count = n_count + 1
+
+        self.Fm = np.zeros([T, dX, dX+dU])
+        self.fv = np.zeros([T, dX])
+        self.dyn_covar = np.zeros([T, dX, dX])
+        Fm_delta = np.zeros([dX, dX+dU])
+        for i in range(dX):
+            Fm_delta[i][i] = 1
+
+        it = slice(dX+dU)
+        ip = slice(dX+dU, dX+dU+dX)
+        # Fit dynamics with least squares regression.
+        dwts = (1.0 / N) * np.ones(N)
+        for t in range(T - 1):
+            Ys = np.c_[X[:, t, :], U[:, t, :], X_delta[:, t+1, :]]
+            # Obtain Normal-inverse-Wishart prior.
+            mu0, Phi, mm, n0 = self.prior.eval(dX, dU, Ys)
+            sig_reg = np.zeros((dX+dU+dX, dX+dU+dX))
+            sig_reg[it, it] = self._hyperparams['regularization']
+            Fm, fv, dyn_covar = gauss_fit_joint_prior(Ys,
+                        mu0, Phi, mm, n0, dwts, dX+dU, dX, sig_reg)
+            self.Fm[t, :, :] = Fm + Fm_delta
+            self.fv[t, :] = fv
+            self.dyn_covar[t, :, :] = dyn_covar
+        return self.Fm, self.fv, self.dyn_covar
+

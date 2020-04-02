@@ -33,7 +33,7 @@ SENSOR_DIMS = {
     ACTION: 6,
 }
 
-PR2_GAINS = np.array([3.09, 1.08, 0.393, 0.674, 0.111, 0.152])
+PR2_GAINS = np.array([1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 
 BASE_DIR = '/'.join(str.split(gps_filepath, '/')[:-2])
 EXP_DIR = BASE_DIR + '/experiments/rllab3_cheetah_badmm/'
@@ -56,8 +56,8 @@ agent = {
     'filename': './mjc_models/half_cheetah.xml',
     'x0': np.concatenate([np.array([0.1, 0.1, -1.54, -1.7, 1.54, -0.2]),
                           np.zeros(6)]),
-    'dt': 0.01,
-    'substeps': 5,
+    'dt': 0.001,
+    'substeps': 1,
     'conditions': common['conditions'],
     'pos_body_idx': np.array([1]),
     'pos_body_offset': [np.array([0, 0, 0])],
@@ -75,7 +75,7 @@ agent = {
 algorithm = {
     'type': AlgorithmBADMM,
     'conditions': common['conditions'],
-    'iterations': 50,
+    'iterations': 1000,
     'lg_step_schedule': np.array([1e-4, 1e-3, 1e-2, 1e-2]),
     'policy_dual_rate': 0.2,
     'ent_reg_schedule': np.array([1e-3, 1e-3, 1e-2, 1e-1]),

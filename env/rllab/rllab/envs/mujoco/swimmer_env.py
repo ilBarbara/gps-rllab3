@@ -25,13 +25,12 @@ class SwimmerEnv(MujocoEnv, Serializable):
     def get_current_obs(self):
         comvel_ = self.get_body_comvel("torso")  # 3
         com_ = self.get_body_com("torso")        # 3
-        adddim_ = np.ones(1)                     # 1
+        # adddim_ = np.ones(1)                     # 1
         return np.concatenate([
             self.model.data.qpos.flat,           # 5
             self.model.data.qvel.flat,           # 5
             com_.flat,
             comvel_.flat,
-            adddim_,
         ]).reshape(-1)
 
     def get_ori(self):

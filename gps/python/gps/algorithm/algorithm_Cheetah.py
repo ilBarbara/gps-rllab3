@@ -99,8 +99,8 @@ class Algorithm(object):
             U = cur_data.get_U()
 
             # Update prior and fit dynamics.
-            self.cur[m].traj_info.dynamics.update_prior(cur_data)
-            self.cur[m].traj_info.dynamics.fit(X, U)
+            self.cur[m].traj_info.dynamics.update_prior_delta(cur_data)
+            self.cur[m].traj_info.dynamics.fit_delta(X, U)
 
             # Fit x0mu/x0sigma.
             x0 = X[:, 0, :]
@@ -157,7 +157,7 @@ class Algorithm(object):
             l = -forward_reward + ctrl_cost    
             # Get costs.
 
-            cc[n, :] = l
+            cc[n, :] = np.zeros(T)
             cs[n, :] = l
             cvel[n, :] = forward_reward
             
@@ -166,10 +166,11 @@ class Algorithm(object):
                 # for i in range(29, 113):
                 #    Cm[n][t][i][i] = 0.5 * 1e-3
                 for i in range(23, 29):
-                    Cm[n][t][i][i] = 0.5 * 1e-1
+                    Cm[n][t][i][i] = 1e-1
                     
-                Cm[n][t][20][22] = -0.5
-                Cm[n][t][22][20] = -0.5
+                # Cm[n][t][20][22] = -0.5
+                # Cm[n][t][22][20] = -0.5
+                cv[n][t][20] = -1.0
                 
             '''
             l, lx, lu, lxx, luu, lux = self.cost[cond].eval(sample)

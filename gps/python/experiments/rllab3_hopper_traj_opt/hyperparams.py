@@ -24,11 +24,11 @@ SENSOR_DIMS = {
     END_EFFECTOR_POINTS: 5,
     JOINT_VELOCITIES: 6,
     JOINT_ANGLES: 3,
-    END_EFFECTOR_POINT_VELOCITIES: 4,
+    END_EFFECTOR_POINT_VELOCITIES: 3,
     ACTION: 3,
 }
 
-PR2_GAINS = np.array([3.09, 1.08, 0.393])
+PR2_GAINS = np.array([1.0, 1.0, 1.0])
 
 BASE_DIR = '/'.join(str.split(gps_filepath, '/')[:-2])
 EXP_DIR = BASE_DIR + '/experiments/rllab3_hopper_traj_opt/'
@@ -52,7 +52,7 @@ agent = {
     'filename': './mjc_models/hopper.xml',
     'x0': np.concatenate([np.array([0.1, 0.1, -1.54]),
                           np.zeros(3)]),
-    'dt': 0.02,
+    'dt': 0.001,
     'substeps': 1,
     'conditions': common['conditions'],
     'pos_body_idx': np.array([1]),
@@ -71,7 +71,7 @@ agent = {
 algorithm = {
     'type': AlgorithmTrajOpt,
     'conditions': common['conditions'],
-    'iterations': 100,
+    'iterations': 1000,
 }
 
 algorithm['init_traj_distr'] = {

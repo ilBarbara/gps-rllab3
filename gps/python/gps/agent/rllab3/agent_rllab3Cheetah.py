@@ -83,9 +83,11 @@ class AgentRllab3HalfCheetah(Agent):
             self._world.append(HalfCheetahEnv())
         # Initialize x0.
         self.x0 = []
+        self._full_init_state = []
         # pdb.set_trace()
         for i in range(self._hyperparams['conditions']):
             self.x0.append(self._world[i].reset())
+            self._full_init_state.append(self._world[i].get_full_state())
         
     def sample(self, policy, condition, verbose=True, save=True, noisy=True):
         """
@@ -103,7 +105,9 @@ class AgentRllab3HalfCheetah(Agent):
         if 'get_features' in dir(policy):
             feature_fn = policy.get_features
         new_sample = self._init_sample(condition, feature_fn=feature_fn)
-        mj_X = self._world[condition].reset()     #initial state in mj_world, condition-specific
+        # initial state in mj_world, condition-specific
+        mj_X = self._world[condition].reset(self._full_init_state[condition])
+        # mj_X = self._world[condition].reset()
         U = np.zeros([self.T, self.dU])
         if noisy:
             noise = generate_noise(self.T, self.dU, self._hyperparams)
@@ -121,12 +125,13 @@ class AgentRllab3HalfCheetah(Agent):
                 self._model[condition]['body_pos'][idx, :] += \
                         var * np.random.randn(1, 3)
 
-        timestep = 0.01
+        timestep = 0.001
         speedup = 1
         # Take the sample.
         for t in range(self.T):
             X_t = new_sample.get_X(t=t)       #get state from _data in sample class
             obs_t = new_sample.get_obs(t=t)
+            pdb.set_trace()
             mj_U = policy.act(X_t, obs_t, t, noise[t, :])
             U[t, :] = mj_U
             
@@ -176,7 +181,9 @@ class AgentRllab3HalfCheetah(Agent):
 
         # Initialize sample with stuff from _data
         # pdb.set_trace()
-        data = self._world[condition].reset()          #get data from mj_world, condition-specific
+        # get data from mj_world, condition-specific
+        data = self._world[condition].reset(self._full_init_state[condition])
+        # data = self._world[condition].reset()
         sample.set(END_EFFECTOR_POINTS, data[0:8], t=0)    #Set _data in sample class
         sample.set(JOINT_VELOCITIES, data[8:17], t=0)
         sample.set(JOINT_ANGLES, data[17:20], t=0)

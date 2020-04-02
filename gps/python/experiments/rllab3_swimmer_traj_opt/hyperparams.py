@@ -24,11 +24,11 @@ SENSOR_DIMS = {
     END_EFFECTOR_POINTS: 5,
     JOINT_VELOCITIES: 5,
     JOINT_ANGLES: 3,
-    END_EFFECTOR_POINT_VELOCITIES: 4,
+    END_EFFECTOR_POINT_VELOCITIES: 3,
     ACTION: 2,
 }
 
-PR2_GAINS = np.array([3.09, 1.08])
+PR2_GAINS = np.array([1.0, 1.0])
 
 BASE_DIR = '/'.join(str.split(gps_filepath, '/')[:-2])
 EXP_DIR = BASE_DIR + '/experiments/rllab3_swimmer_traj_opt/'
@@ -52,7 +52,7 @@ agent = {
     'filename': './mjc_models/swimmer.xml',
     'x0': np.concatenate([np.array([0.1, 0.1]),
                           np.zeros(2)]),
-    'dt': 0.02,
+    'dt': 0.001,
     'substeps': 1,
     'conditions': common['conditions'],
     'pos_body_idx': np.array([1]),
@@ -66,12 +66,13 @@ agent = {
     'obs_include': [JOINT_ANGLES, JOINT_VELOCITIES, END_EFFECTOR_POINTS,
                     END_EFFECTOR_POINT_VELOCITIES],
     'camera_pos': np.array([0., 0., 2., 0., 0.2, 0.5]),
+    'noise_scaling': 0.1,
 }
 
 algorithm = {
     'type': AlgorithmTrajOpt,
     'conditions': common['conditions'],
-    'iterations': 100,
+    'iterations': 1000,
 }
 
 algorithm['init_traj_distr'] = {
@@ -124,7 +125,7 @@ algorithm['policy_opt'] = {}
 
 config = {
     'iterations': algorithm['iterations'],
-    'num_samples': 20,
+    'num_samples': 40,
     'verbose_trials': 1,
     'common': common,
     'agent': agent,

@@ -29,7 +29,7 @@ SENSOR_DIMS = {
     END_EFFECTOR_POINTS: 5,
     JOINT_VELOCITIES: 6,
     JOINT_ANGLES: 3,
-    END_EFFECTOR_POINT_VELOCITIES: 4,
+    END_EFFECTOR_POINT_VELOCITIES: 3,
     ACTION: 3,
 }
 
@@ -54,8 +54,8 @@ agent = {
     'filename': './mjc_models/hopper.xml',
     'x0': np.concatenate([np.array([0.1, 0.1, -1.54]),
                           np.zeros(3)]),
-    'dt': 0.01,
-    'substeps': 5,
+    'dt': 0.001,
+    'substeps': 1,
     'conditions': common['conditions'],
     'pos_body_idx': np.array([1]),
     'pos_body_offset': [np.array([0, 0, 0])],
@@ -73,7 +73,7 @@ agent = {
 algorithm = {
     'type': AlgorithmBADMM,
     'conditions': common['conditions'],
-    'iterations': 100,
+    'iterations': 1000,
     'lg_step_schedule': np.array([1e-4, 1e-3, 1e-2, 1e-2]),
     'policy_dual_rate': 0.2,
     'ent_reg_schedule': np.array([1e-3, 1e-3, 1e-2, 1e-1]),
