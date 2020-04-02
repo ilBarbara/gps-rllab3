@@ -43,7 +43,7 @@ common = {
     'experiment_dir': EXP_DIR,
     'data_files_dir': EXP_DIR + 'data_files/',
     'log_filename': EXP_DIR + 'log.txt',
-    'conditions': 4,
+    'conditions': 1,
 }
 
 if not os.path.exists(common['data_files_dir']):
@@ -142,7 +142,7 @@ algorithm['policy_prior'] = {
 
 config = {
     'iterations': algorithm['iterations'],
-    'num_samples': 10,
+    'num_samples': 20,
     'verbose_trials': 1,
     'verbose_policy_trials': 1,
     'common': common,
