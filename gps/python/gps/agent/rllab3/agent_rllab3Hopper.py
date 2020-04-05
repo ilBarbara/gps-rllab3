@@ -130,7 +130,7 @@ class AgentRllab3Hopper(Agent):
         for t in range(self.T):
             X_t = new_sample.get_X(t=t)       #get state from _data in sample class
             obs_t = new_sample.get_obs(t=t)
-            pdb.set_trace()
+            # pdb.set_trace()
             mj_U = policy.act(X_t, obs_t, t, noise[t, :])
             U[t, :] = mj_U
             

@@ -59,14 +59,14 @@ agent = {
     'pos_body_offset': [np.array([0, 0, 0])],
     #'pos_body_offset': [[np.array([0, 0.2, 0])], [np.array([0, 0.1, 0])],
     #                    [np.array([0, -0.1, 0])], [np.array([0, -0.2, 0])]],
-    'T': 200,
+    'T': 50,
     'sensor_dims': SENSOR_DIMS,
     'state_include': [JOINT_ANGLES, JOINT_VELOCITIES, END_EFFECTOR_POINTS,
                       END_EFFECTOR_POINT_VELOCITIES],
     'obs_include': [JOINT_ANGLES, JOINT_VELOCITIES, END_EFFECTOR_POINTS,
                     END_EFFECTOR_POINT_VELOCITIES],
     'camera_pos': np.array([0., 0., 2., 0., 0.2, 0.5]),
-    'noise_scaling': 0.1,
+    'noise_scaling': 1.0,
 }
 
 algorithm = {
@@ -86,6 +86,7 @@ algorithm['init_traj_distr'] = {
     'T': agent['T'],
 }
 
+'''
 torque_cost = {
     'type': CostAction,
     'wu': 5e-5 / PR2_GAINS,
@@ -99,11 +100,12 @@ fk_cost = {
     'l2': 10.0,
     'alpha': 1e-5,
 }
+'''
 
 algorithm['cost'] = {
     'type': CostSum,
-    'costs': [torque_cost, fk_cost],
-    'weights': [1.0, 1.0],
+    'costs': [],
+    'weights': [],
 }
 
 algorithm['dynamics'] = {
@@ -125,7 +127,7 @@ algorithm['policy_opt'] = {}
 
 config = {
     'iterations': algorithm['iterations'],
-    'num_samples': 40,
+    'num_samples': 20,
     'verbose_trials': 1,
     'common': common,
     'agent': agent,

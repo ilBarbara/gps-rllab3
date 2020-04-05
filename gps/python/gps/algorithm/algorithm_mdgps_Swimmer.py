@@ -5,7 +5,7 @@ import logging
 import numpy as np
 import scipy as sp
 
-from gps.algorithm.algorithm_Cheetah import Algorithm
+from gps.algorithm.algorithm_Swimmer import Algorithm
 from gps.algorithm.algorithm_utils import PolicyInfo
 from gps.algorithm.config import ALG_MDGPS
 from gps.sample.sample_list import SampleList

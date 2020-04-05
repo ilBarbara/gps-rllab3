@@ -14,7 +14,10 @@ from gps.algorithm.traj_opt.traj_opt_utils import \
         traj_distr_kl, traj_distr_kl_alt
 
 from gps.algorithm.algorithm_badmm import AlgorithmBADMM
-from gps.algorithm.algorithm_mdgps import AlgorithmMDGPS
+from gps.algorithm.algorithm_mdgps import AlgorithmMDGPS as ant_mdgps
+from gps.algorithm.algorithm_mdgps_Swimmer import AlgorithmMDGPS as swimmer_mdgps
+from gps.algorithm.algorithm_mdgps_Cheetah import AlgorithmMDGPS as cheetah_mdgps
+from gps.algorithm.algorithm_mdgps_Hopper import AlgorithmMDGPS as hopper_mdgps
 
 import pdb
 
@@ -43,7 +46,9 @@ class TrajOptLQRPython(TrajOpt):
         step_mult = algorithm.cur[m].step_mult
         traj_info = algorithm.cur[m].traj_info
 
-        if isinstance(algorithm, AlgorithmMDGPS):
+        # pdb.set_trace()
+        if isinstance(algorithm, ant_mdgps) or isinstance(algorithm, swimmer_mdgps) \
+                or isinstance(algorithm, cheetah_mdgps) or isinstance(algorithm, hopper_mdgps):
             # For MDGPS, constrain to previous NN linearization
             prev_traj_distr = algorithm.cur[m].pol_info.traj_distr()
         else:
@@ -75,7 +80,30 @@ class TrajOptLQRPython(TrajOpt):
 
             # Run fwd/bwd pass, note that eta may be updated.
             # Compute KL divergence constraint violation.
-            traj_distr, eta = self.backward(prev_traj_distr, traj_info,
+            # pdb.set_trace()
+            if eta > 1e15:
+                print("eta: ", eta)
+                traj_distr, eta = self.backward_debug(prev_traj_distr, traj_info,
+                                                eta, algorithm, m)
+                if not self._use_prev_distr:
+                    new_mu, new_sigma = self.forward(traj_distr, traj_info)
+                    kl_div = traj_distr_kl(
+                        new_mu, new_sigma, traj_distr, prev_traj_distr,
+                        tot=(not self.cons_per_step)
+                    )
+                print("kl_div: ", kl_div, "  kl_step: ", kl_step, "  eta: ", eta)
+                pdb.set_trace()
+                traj_distr, eta = self.backward_debug(prev_traj_distr, traj_info,
+                                                      eta, algorithm, m)
+                if not self._use_prev_distr:
+                    new_mu, new_sigma = self.forward(traj_distr, traj_info)
+                    kl_div = traj_distr_kl(
+                        new_mu, new_sigma, traj_distr, prev_traj_distr,
+                        tot=(not self.cons_per_step)
+                    )
+                exit(0)
+            else:
+                traj_distr, eta = self.backward(prev_traj_distr, traj_info,
                                             eta, algorithm, m)
 
             if not self._use_prev_distr:
@@ -84,6 +112,20 @@ class TrajOptLQRPython(TrajOpt):
                         new_mu, new_sigma, traj_distr, prev_traj_distr,
                         tot=(not self.cons_per_step)
                 )
+                '''
+                kl_div_alt = traj_distr_kl_alt(
+                    new_mu, new_sigma, traj_distr, prev_traj_distr,
+                    tot=(not self.cons_per_step)
+                )
+                kl_div__ = traj_distr_kl_alt(
+                    new_mu, new_sigma, traj_distr, traj_distr,
+                    tot=(not self.cons_per_step)
+                )
+                kl_div_ = traj_distr_kl(
+                        new_mu, new_sigma, traj_distr, traj_distr,
+                        tot=(not self.cons_per_step)
+                )
+                '''
             else:
                 prev_mu, prev_sigma = self.forward(prev_traj_distr, traj_info)
                 kl_div = traj_distr_kl_alt(
@@ -346,6 +388,7 @@ class TrajOptLQRPython(TrajOpt):
                                             Vxx[t+1, :, :].dot(fv[t, :]))
 
                 # Symmetrize quadratic component.
+                # pdb.set_trace()
                 Qtt[t] = 0.5 * (Qtt[t] + Qtt[t].T)
 
                 if not self.cons_per_step:
@@ -374,6 +417,7 @@ class TrajOptLQRPython(TrajOpt):
                 if self._hyperparams['update_in_bwd_pass']:
                     # Store conditional covariance, inverse, and Cholesky.
                     traj_distr.inv_pol_covar[t, :, :] = inv_term
+
                     traj_distr.pol_covar[t, :, :] = sp.linalg.solve_triangular(
                         U, sp.linalg.solve_triangular(L, np.eye(dU), lower=True)
                     )
@@ -459,3 +503,197 @@ class TrajOptLQRPython(TrajOpt):
         if self.cons_per_step:
             return all([abs(con[t]) < (0.1*kl_step[t]) for t in range(con.size)])
         return abs(con) < 0.1 * kl_step
+
+
+    def backward_debug(self, prev_traj_distr, traj_info, eta, algorithm, m):
+        """
+        Perform LQR backward pass. This computes a new linear Gaussian
+        policy object.
+        Args:
+            prev_traj_distr: A linear Gaussian policy object from
+                previous iteration.
+            traj_info: A TrajectoryInfo object.
+            eta: Dual variable.
+            algorithm: Algorithm object needed to compute costs.
+            m: Condition number.
+        Returns:
+            traj_distr: A new linear Gaussian policy.
+            new_eta: The updated dual variable. Updates happen if the
+                Q-function is not PD.
+        """
+        # Constants.
+        T = prev_traj_distr.T
+        dU = prev_traj_distr.dU
+        dX = prev_traj_distr.dX
+
+        if self._update_in_bwd_pass:
+            traj_distr = prev_traj_distr.nans_like()
+        else:
+            traj_distr = prev_traj_distr.copy()
+
+        # Store pol_wt if necessary
+        if type(algorithm) == AlgorithmBADMM:
+            pol_wt = algorithm.cur[m].pol_info.pol_wt
+
+        idx_x = slice(dX)
+        idx_u = slice(dX, dX+dU)
+
+        # Pull out dynamics.
+        Fm = traj_info.dynamics.Fm
+        fv = traj_info.dynamics.fv
+
+        # Non-SPD correction terms.
+        del_ = self._hyperparams['del0']
+        if self.cons_per_step:
+            del_ = np.ones(T) * del_
+        eta0 = eta
+
+        # Run dynamic programming.
+        fail = True
+        while fail:
+            fail = False  # Flip to true on non-symmetric PD.
+
+            # Allocate.
+            Vxx = np.zeros((T, dX, dX))
+            Vx = np.zeros((T, dX))
+            Qtt = np.zeros((T, dX+dU, dX+dU))
+            Qt = np.zeros((T, dX+dU))
+
+            if not self._update_in_bwd_pass:
+                new_K, new_k = np.zeros((T, dU, dX)), np.zeros((T, dU))
+                new_pS = np.zeros((T, dU, dU))
+                new_ipS, new_cpS = np.zeros((T, dU, dU)), np.zeros((T, dU, dU))
+
+            # pdb.set_trace()
+            fCm, fcv = algorithm.compute_costs_debug(
+                    m, eta, augment=(not self.cons_per_step)
+            )
+
+            # Compute state-action-state function at each time step.
+            for t in range(T - 1, -1, -1):
+                # Add in the cost.
+                Qtt[t] = fCm[t, :, :]  # (X+U) x (X+U)
+                Qt[t] = fcv[t, :]  # (X+U) x 1
+
+                # Add in the value function from the next time step.
+                if t < T - 1:
+                    if type(algorithm) == AlgorithmBADMM:
+                        multiplier = (pol_wt[t+1] + eta)/(pol_wt[t] + eta)
+                    else:
+                        multiplier = 1.0
+                    Qtt[t] += multiplier * \
+                            Fm[t, :, :].T.dot(Vxx[t+1, :, :]).dot(Fm[t, :, :])
+                    Qt[t] += multiplier * \
+                            Fm[t, :, :].T.dot(Vx[t+1, :] +
+                                            Vxx[t+1, :, :].dot(fv[t, :]))
+
+                # Symmetrize quadratic component.
+                # pdb.set_trace()
+                Qtt[t] = 0.5 * (Qtt[t] + Qtt[t].T)
+
+                if not self.cons_per_step:
+                    inv_term = Qtt[t, idx_u, idx_u]
+                    k_term = Qt[t, idx_u]
+                    K_term = Qtt[t, idx_u, idx_x]
+                else:
+                    inv_term = (1.0 / eta[t]) * Qtt[t, idx_u, idx_u] + \
+                            prev_traj_distr.inv_pol_covar[t]
+                    k_term = (1.0 / eta[t]) * Qt[t, idx_u] - \
+                            prev_traj_distr.inv_pol_covar[t].dot(prev_traj_distr.k[t])
+                    K_term = (1.0 / eta[t]) * Qtt[t, idx_u, idx_x] - \
+                            prev_traj_distr.inv_pol_covar[t].dot(prev_traj_distr.K[t])
+                # Compute Cholesky decomposition of Q function action
+                # component.
+                try:
+                    U = sp.linalg.cholesky(inv_term)
+                    L = U.T
+                except LinAlgError as e:
+                    # Error thrown when Qtt[idx_u, idx_u] is not
+                    # symmetric positive definite.
+                    LOGGER.debug('LinAlgError: %s', e)
+                    fail = t if self.cons_per_step else True
+                    break
+
+                if self._hyperparams['update_in_bwd_pass']:
+                    # Store conditional covariance, inverse, and Cholesky.
+                    traj_distr.inv_pol_covar[t, :, :] = inv_term
+
+                    traj_distr.pol_covar[t, :, :] = sp.linalg.solve_triangular(
+                        U, sp.linalg.solve_triangular(L, np.eye(dU), lower=True)
+                    )
+                    traj_distr.chol_pol_covar[t, :, :] = sp.linalg.cholesky(
+                        traj_distr.pol_covar[t, :, :]
+                    )
+
+                    # Compute mean terms.
+                    traj_distr.k[t, :] = -sp.linalg.solve_triangular(
+                        U, sp.linalg.solve_triangular(L, k_term, lower=True)
+                    )
+                    traj_distr.K[t, :, :] = -sp.linalg.solve_triangular(
+                        U, sp.linalg.solve_triangular(L, K_term, lower=True)
+                    )
+                else:
+                    # Store conditional covariance, inverse, and Cholesky.
+                    new_ipS[t, :, :] = inv_term
+                    new_pS[t, :, :] = sp.linalg.solve_triangular(
+                        U, sp.linalg.solve_triangular(L, np.eye(dU), lower=True)
+                    )
+                    new_cpS[t, :, :] = sp.linalg.cholesky(
+                        new_pS[t, :, :]
+                    )
+
+                    # Compute mean terms.
+                    new_k[t, :] = -sp.linalg.solve_triangular(
+                        U, sp.linalg.solve_triangular(L, k_term, lower=True)
+                    )
+                    new_K[t, :, :] = -sp.linalg.solve_triangular(
+                        U, sp.linalg.solve_triangular(L, K_term, lower=True)
+                    )
+
+                # Compute value function.
+                if (self.cons_per_step or
+                    not self._hyperparams['update_in_bwd_pass']):
+                    Vxx[t, :, :] = Qtt[t, idx_x, idx_x] + \
+                            traj_distr.K[t].T.dot(Qtt[t, idx_u, idx_u]).dot(traj_distr.K[t]) + \
+                            (2 * Qtt[t, idx_x, idx_u]).dot(traj_distr.K[t])
+                    Vx[t, :] = Qt[t, idx_x].T + \
+                            Qt[t, idx_u].T.dot(traj_distr.K[t]) + \
+                            traj_distr.k[t].T.dot(Qtt[t, idx_u, idx_u]).dot(traj_distr.K[t]) + \
+                            Qtt[t, idx_x, idx_u].dot(traj_distr.k[t])
+                else:
+                    Vxx[t, :, :] = Qtt[t, idx_x, idx_x] + \
+                            Qtt[t, idx_x, idx_u].dot(traj_distr.K[t, :, :])
+                    Vx[t, :] = Qt[t, idx_x] + \
+                            Qtt[t, idx_x, idx_u].dot(traj_distr.k[t, :])
+                Vxx[t, :, :] = 0.5 * (Vxx[t, :, :] + Vxx[t, :, :].T)
+
+            if not self._hyperparams['update_in_bwd_pass']:
+                traj_distr.K, traj_distr.k = new_K, new_k
+                traj_distr.pol_covar = new_pS
+                traj_distr.inv_pol_covar = new_ipS
+                traj_distr.chol_pol_covar = new_cpS
+
+            # Increment eta on non-SPD Q-function.
+            if fail:
+                if not self.cons_per_step:
+                    old_eta = eta
+                    eta = eta0 + del_
+                    LOGGER.debug('Increasing eta: %f -> %f', old_eta, eta)
+                    del_ *= 2  # Increase del_ exponentially on failure.
+                else:
+                    old_eta = eta[fail]
+                    eta[fail] = eta0[fail] + del_[fail]
+                    LOGGER.debug('Increasing eta %d: %f -> %f',
+                                 fail, old_eta, eta[fail])
+                    del_[fail] *= 2  # Increase del_ exponentially on failure.
+                if self.cons_per_step:
+                    fail_check = (eta[fail] >= 1e16)
+                else:
+                    fail_check = (eta >= 1e16)
+                if fail_check:
+                    if np.any(np.isnan(Fm)) or np.any(np.isnan(fv)):
+                        raise ValueError('NaNs encountered in dynamics!')
+                    raise ValueError('Failed to find PD solution even for very \
+                            large eta (check that dynamics and cost are \
+                            reasonably well conditioned)!')
+        return traj_distr, eta

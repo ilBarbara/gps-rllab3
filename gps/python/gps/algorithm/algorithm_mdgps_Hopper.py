@@ -237,3 +237,40 @@ class AlgorithmMDGPS(Algorithm):
             fcv[t, :] = (cv[t, :] + PKLv[t, :] * eta) / (eta + multiplier)
 
         return fCm, fcv
+
+    def compute_costs_debug(self, m, eta, augment=True):
+        """ Compute cost estimates used in the LQR backward pass. """
+        traj_info, traj_distr = self.cur[m].traj_info, self.cur[m].traj_distr
+        if not augment:  # Whether to augment cost with term to penalize KL
+            return traj_info.Cm, traj_info.cv
+
+        pol_info = self.cur[m].pol_info
+        multiplier = self._hyperparams['max_ent_traj']
+        T, dU, dX = traj_distr.T, traj_distr.dU, traj_distr.dX
+        Cm, cv = np.copy(traj_info.Cm), np.copy(traj_info.cv)
+
+        PKLm = np.zeros((T, dX + dU, dX + dU))
+        PKLv = np.zeros((T, dX + dU))
+        fCm, fcv = np.zeros(Cm.shape), np.zeros(cv.shape)
+        for t in range(T):
+            # Policy KL-divergence terms.
+            inv_pol_S = np.linalg.solve(
+                pol_info.chol_pol_S[t, :, :],
+                np.linalg.solve(pol_info.chol_pol_S[t, :, :].T, np.eye(dU))
+            )
+            KB, kB = pol_info.pol_K[t, :, :], pol_info.pol_k[t, :]
+            PKLm[t, :, :] = np.vstack([
+                np.hstack([KB.T.dot(inv_pol_S).dot(KB), -KB.T.dot(inv_pol_S)]),
+                np.hstack([-inv_pol_S.dot(KB), inv_pol_S])
+            ])
+            PKLv[t, :] = np.concatenate([
+                KB.T.dot(inv_pol_S).dot(kB), -inv_pol_S.dot(kB)
+            ])
+            # fCm[t, :, :] = (Cm[t, :, :] + PKLm[t, :, :] * eta) / (eta + multiplier)
+            # fcv[t, :] = (cv[t, :] + PKLv[t, :] * eta) / (eta + multiplier)
+            # pdb.set_trace()
+            fCm[t, :, :] = PKLm[t, :, :]
+            fcv[t, :] = PKLv[t, :]
+
+        return fCm, fcv
+

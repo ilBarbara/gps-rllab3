@@ -112,6 +112,8 @@ class MujocoEnv(Env):
                                    np.random.normal(size=self.init_qpos.shape) * 0.001
             self.model.data.qvel = self.init_qvel + \
                                    np.random.normal(size=self.init_qvel.shape) * 0.01
+            # self.model.data.qpos = self.init_qpos
+            # self.model.data.qvel = self.init_qvel
             self.model.data.qacc = self.init_qacc
             self.model.data.ctrl = self.init_ctrl
         else:
