@@ -108,7 +108,7 @@ class PolicyOptMf(PolicyOpt):
         Returns:
             A tensorflow object with updated weights.
         """
-        assert self.policy_type=='model_free'
+        assert self.policy_type in ['model_free', 'mfmb']
         dU, dO = self._dU, self._dO
         if self.center_adv:
             traj_C = (traj_C - np.mean(traj_C))/(np.std(traj_C)+1e-8)
