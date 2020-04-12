@@ -63,6 +63,59 @@ class TfMap:
     def set_loss_op(self, loss_op):
         self.loss_op = loss_op
 
+class TfMap_mfmb:
+    """
+    TfMap that contains both imitation learning and model-free loss
+    compatible with policy_opt_mf and policy_opt_mfmb
+    """
+
+    def __init__(self, input_tensor, target_output_tensor, \
+                 cost_tensor, precision_tensor, mean_op, log_std_op,\
+                 loss_mf_op, loss_imit_op, log_std_weight,\
+                 fp=None, policy_type=None):
+        assert policy_type in ["mfmb", "model-free"]
+        self.input_tensor = input_tensor
+        self.target_output_tensor = target_output_tensor
+        self.cost_tensor = cost_tensor
+        self.precision_tensor = precision_tensor
+        self.policy_type = policy_type
+        self.mean_op = mean_op
+        self.log_std_op = log_std_op
+        self.log_std_weight = log_std_weight
+        self.loss_mf_op = loss_mf_op
+        self.loss_imit_op = loss_imit_op
+        self.img_feat_op = fp
+
+    def get_input_tensor(self):
+        return self.input_tensor
+
+    def get_feature_op(self):
+        return None
+
+    def get_target_output_tensor(self):
+        return self.target_output_tensor
+
+    def get_policy_type(self):
+        return self.policy_type
+
+    def get_precision_tensor(self):
+        return self.precision_tensor
+    
+    def get_cost_tensor(self):
+        return self.cost_tensor
+
+    def get_log_std_weight(self):
+        return self.log_std_weight
+
+    def get_output_op(self):
+        return [self.mean_op, self.log_std_op]
+
+    def get_loss_mf_op(self):
+        return self.loss_mf_op
+
+    def get_loss_imit_op(self):
+        return self.loss_imit_op
+
 
 class TfSolver:
     """ A container for holding solver hyperparams in tensorflow. Used to execute backwards pass. """

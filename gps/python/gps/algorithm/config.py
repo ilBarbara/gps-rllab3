@@ -31,6 +31,9 @@ ALG = {
     'fit_dynamics': True,    
 }
 
+ALG_MF = {
+    "sample_on_init_policy":True
+}
 
 # AlgorithmBADMM
 ALG_BADMM = {

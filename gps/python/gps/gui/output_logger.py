@@ -6,6 +6,8 @@ used to log data when GUI is off
 import numpy as np
 from gps.algorithm.algorithm_badmm import AlgorithmBADMM
 from gps.algorithm.algorithm_mdgps import AlgorithmMDGPS
+import logging
+LOGGER = logging.getLogger(__name__)
 
 class GPSOutputLogger(object):
     def __init__(self, hyperparams):
@@ -14,6 +16,7 @@ class GPSOutputLogger(object):
         self.log_text('\n')
         self.log_text(self._hyperparams['info'])
         self._first_update = True
+        self.log_policy_only = hyperparams.get("log_policy_only", False)
 
     def log_text(self, text):
         with open(self._log_filename, 'a') as f:
@@ -28,9 +31,15 @@ class GPSOutputLogger(object):
             self._output_column_titles(algorithm)
             self._first_update = False
 
-        costs = [np.mean(np.sum(algorithm.prev[m].cs, axis=1)) for m in range(algorithm.M)]
-        #costs = [np.mean(algorithm.prev[m].cs[:, 99]) for m in range(algorithm.M)]
-        self._update_iteration_data(itr, algorithm, costs, pol_sample_lists)
+        if self.log_policy_only:
+            costs = [np.mean(np.sum(algorithm.cur[m].cs, axis=1)) for m in range(algorithm.M)]
+            mean_cost = np.mean(costs)
+            self.log_text(str(itr)+" "+str(mean_cost)+" "+str(costs))
+            LOGGER.info(str(itr)+" "+str(mean_cost)+" "+str(costs))    
+        else:        
+            costs = [np.mean(np.sum(algorithm.prev[m].cs, axis=1)) for m in range(algorithm.M)]
+            #costs = [np.mean(algorithm.prev[m].cs[:, 99]) for m in range(algorithm.M)]
+            self._update_iteration_data(itr, algorithm, costs, pol_sample_lists)
 
     def _output_column_titles(self, algorithm):
         """

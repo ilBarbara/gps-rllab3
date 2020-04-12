@@ -9,6 +9,7 @@ import pdb
 import logging
 import imp
 import os
+os.environ["CUDA_VISIBLE_DEVICES"] = "4"
 import os.path
 import sys
 import copy
