@@ -59,7 +59,14 @@ class TfPolicy(Policy):
             obs = np.expand_dims(obs, axis=0)
         obs[:, self.x_idx] = obs[:, self.x_idx].dot(self.scale) + self.bias
         with tf.device(self.device_string):
-            action_mean = self.sess.run(self.act_op, feed_dict={self.obs_tensor: obs})
+            if self.policy_type in ["mfmb", "model-free"]:
+                action_mean, action_sigma = self.sess.run(\
+                    self.act_op, feed_dict={self.obs_tensor:obs}
+                )
+                action_sigma = np.exp(action_sigma)
+                self.chol_pol_covar = np.diag(action_sigma[0])  
+            else:              
+                action_mean = self.sess.run(self.act_op, feed_dict={self.obs_tensor: obs})
         if noise is None:
             u = action_mean
         else:
