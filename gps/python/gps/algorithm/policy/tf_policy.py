@@ -21,7 +21,7 @@ class TfPolicy(Policy):
         device_string: tf device string for running on either gpu or cpu.
     """
     def __init__(self, dU, obs_tensor, act_op, feat_op, var, sess,\
-         device_string, copy_param_scope=None, policy_type=None):
+         device_string, copy_param_scope=None, policy_type=None, log_std=None):
         Policy.__init__(self)
         self.dU = dU
         self.obs_tensor = obs_tensor
@@ -34,6 +34,7 @@ class TfPolicy(Policy):
         self.bias = None
         self.x_idx = None
         self.policy_type = policy_type
+        self.log_std = log_std
 
         if copy_param_scope:
             self.copy_params = tf.get_collection(tf.GraphKeys.VARIABLES, scope=copy_param_scope)

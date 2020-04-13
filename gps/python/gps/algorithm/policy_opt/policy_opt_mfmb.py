@@ -20,8 +20,8 @@ from gps.algorithm.policy_opt.tf_utils import TfSolver
 LOGGER = logging.getLogger(__name__)
 
 
-class PolicyOptMf(PolicyOpt):
-    """ Policy optimization using tensor flow for Model-Free function approximation. """
+class PolicyOptMfMb(PolicyOpt):
+    """ Policy optimization using tensorflow for Model-Free & Model-base function approximation. """
     def __init__(self, hyperparams, dO, dU):
         config = copy.deepcopy(POLICY_OPT_TF)
         config.update(hyperparams)
@@ -36,9 +36,8 @@ class PolicyOptMf(PolicyOpt):
         if self._hyperparams['use_gpu'] == 1:
             self.gpu_device = self._hyperparams['gpu_id']
             self.device_string = "/gpu:" + str(self.gpu_device)
-        self.act_op = None
+        self.act_op = None  # mu_hat
         self.feat_op = None # features
-        self.loss_scalar = None
         self.obs_tensor = None
         self.cost_tensor = None
         self.action_tensor = None  # mu true
@@ -50,8 +49,9 @@ class PolicyOptMf(PolicyOpt):
         self.center_adv = self._hyperparams.get("center_adv", True)
         self.sess = tf.Session()
         self.policy = TfPolicy(dU, self.obs_tensor, self.act_op, self.feat_op,
-                               np.zeros(dU), self.sess, self.device_string,\
-                               copy_param_scope=self._hyperparams['copy_param_scope'], policy_type=self.policy_type)
+                               np.zeros(dU), self.sess, self.device_string, 
+                               copy_param_scope=self._hyperparams['copy_param_scope'], 
+                               policy_type=self.policy_type, log_std=self.log_std)
         # List of indices for state (vector) data and image (tensor) data in observation.
         self.x_idx, self.img_idx, i = [], [], 0
         if 'obs_image_data' not in self._hyperparams['network_params']:
@@ -73,11 +73,13 @@ class PolicyOptMf(PolicyOpt):
                                   network_config=self._hyperparams['network_params'])
         self.obs_tensor = tf_map.get_input_tensor()
         self.cost_tensor = tf_map.get_cost_tensor()
+        self.precision_tensor = tf_map.get_precision_tensor()
         self.action_tensor = tf_map.get_target_output_tensor()
         self.policy_type = tf_map.get_policy_type()
-        self.act_op = tf_map.get_output_op()#mean and sigma
-        self.feat_op = tf_map.get_feature_op()
-        self.loss_scalar = tf_map.get_loss_mf_op()
+        self.act_op = tf_map.get_output_op()#mean and log_std
+        self.log_std = tf_map.get_log_std_weight()
+        self.loss_mf_op = tf_map.get_loss_mf_op()
+        self.loss_imit_op = tf_map.get_loss_imit_op()
         self.fc_vars = fc_vars
         self.last_conv_vars = last_conv_vars
 
@@ -88,17 +90,123 @@ class PolicyOptMf(PolicyOpt):
 
     def init_solver(self):
         """ Helper method to initialize the solver. """
-        self.solver = TfSolver(loss_scalar=self.loss_scalar,
+        self.solver_mf = TfSolver(loss_scalar=self.loss_mf_op,
                                solver_name=self._hyperparams['solver_type'],
                                base_lr=self._hyperparams['lr'],
                                lr_policy=self._hyperparams['lr_policy'],
                                momentum=self._hyperparams['momentum'],
                                weight_decay=self._hyperparams['weight_decay'],
                                fc_vars=self.fc_vars,
-                               last_conv_vars=self.last_conv_vars)
+                               last_conv_vars=self.last_conv_vars)                
+        self.solver_imit = TfSolver(loss_scalar=self.loss_imit_op,
+                               solver_name=self._hyperparams['solver_type'],
+                               base_lr=self._hyperparams['lr'],
+                               lr_policy=self._hyperparams['lr_policy'],
+                               momentum=self._hyperparams['momentum'],
+                               weight_decay=self._hyperparams['weight_decay'],
+                               fc_vars=self.fc_vars,
+                               last_conv_vars=self.last_conv_vars)                    
         self.saver = tf.train.Saver()
 
-    def update(self, traj_X, traj_U, traj_C):
+    def update(self):
+        raise NotImplementedError("mfmb do not support update method.")
+
+    def update_imit(self, obs, tgt_mu, tgt_prc, tgt_wt):
+        """
+        Update policy.
+        Args:
+            obs: Numpy array of observations, N x T x dO.
+            tgt_mu: Numpy array of mean controller outputs, N x T x dU.
+            tgt_prc: Numpy array of precision matrices, N x T x dU x dU.
+            tgt_wt: Numpy array of weights, N x T.
+        Returns:
+            A tensorflow object with updated weights.
+        """
+        N, T = obs.shape[:2]
+        dU, dO = self._dU, self._dO
+
+        # TODO - Make sure all weights are nonzero?
+
+        # Save original tgt_prc.
+        tgt_prc_orig = np.reshape(tgt_prc, [N*T, dU, dU])
+
+        # Renormalize weights.
+        tgt_wt *= (float(N * T) / np.sum(tgt_wt))
+        # Allow weights to be at most twice the robust median.
+        mn = np.median(tgt_wt[(tgt_wt > 1e-2).nonzero()])
+        for n in range(N):
+            for t in range(T):
+                tgt_wt[n, t] = min(tgt_wt[n, t], 2 * mn)
+        # Robust median should be around one.
+        tgt_wt /= mn
+
+        # Reshape inputs.
+        obs = np.reshape(obs, (N*T, dO))
+        tgt_mu = np.reshape(tgt_mu, (N*T, dU))
+        tgt_prc = np.reshape(tgt_prc, (N*T, dU, dU))
+        tgt_wt = np.reshape(tgt_wt, (N*T, 1, 1))
+
+        # Fold weights into tgt_prc.
+        tgt_prc = tgt_wt * tgt_prc
+
+        # TODO: Find entries with very low weights?
+
+        # Normalize obs, but only compute normalzation at the beginning.
+        if self.policy.scale is None or self.policy.bias is None:
+            self.policy.x_idx = self.x_idx
+            # 1e-3 to avoid infs if some state dimensions don't change in the
+            # first batch of samples
+            self.policy.scale = np.diag(
+                1.0 / np.maximum(np.std(obs[:, self.x_idx], axis=0), 1e-3))
+            self.policy.bias = - np.mean(
+                obs[:, self.x_idx].dot(self.policy.scale), axis=0)
+        obs[:, self.x_idx] = obs[:, self.x_idx].dot(self.policy.scale) + self.policy.bias
+
+        # Assuming that N*T >= self.batch_size.
+        batches_per_epoch = np.floor(N*T / self.batch_size)
+        idx = np.asarray(range(N*T))
+        average_loss = 0
+        np.random.shuffle(idx)
+
+        # actual training.
+        for i in range(self._hyperparams['iterations']):
+            # Load in data for this batch.
+            start_idx = int(i * self.batch_size %
+                            (batches_per_epoch * self.batch_size))
+            idx_i = idx[start_idx:start_idx+self.batch_size]
+            if self.policy_type=="vae":
+                feed_dict = {self.obs_tensor: obs[idx_i],
+                         self.action_tensor: tgt_mu[idx_i]}                
+            else:
+                feed_dict = {self.obs_tensor: obs[idx_i],
+                         self.action_tensor: tgt_mu[idx_i],
+                         self.precision_tensor: tgt_prc[idx_i]}
+            train_loss = self.solver_imit(feed_dict, self.sess, device_string=self.device_string)
+
+            average_loss += train_loss
+            if (i+1) % 50 == 0:
+                LOGGER.info('tensorflow iteration %d, average loss %f',
+                             i+1, average_loss / 50)
+                average_loss = 0
+
+        # Keep track of tensorflow iterations for loading solver states.
+        self.tf_iter += self._hyperparams['iterations']
+
+        # SJHTODO - Make std learnable?
+        # Optimize variance.
+        A = np.sum(tgt_prc_orig, 0) + 2 * N * T * \
+                self._hyperparams['ent_reg'] * np.ones((dU, dU))
+        A = A / np.sum(tgt_wt)
+
+        # TODO - Use dense covariance?
+        self.var = 1 / np.diag(A)
+        self.policy.chol_pol_covar = np.diag(np.sqrt(self.var))
+        op = tf.assign(self.policy.log_std, np.reshape(np.log(np.sqrt(self.var)), (1,-1)))
+        self.sess.run(op)
+
+        return self.policy
+
+    def update_mf(self, traj_X, traj_U, traj_C):
         """
         Update policy.
         Args:
@@ -108,7 +216,7 @@ class PolicyOptMf(PolicyOpt):
         Returns:
             A tensorflow object with updated weights.
         """
-        assert self.policy_type in ['model_free', 'mfmb']
+        assert self.policy_type=='mfmb'
         dU, dO = self._dU, self._dO
         if self.center_adv:
             traj_C = (traj_C - np.mean(traj_C))/(np.std(traj_C)+1e-8)
@@ -134,26 +242,9 @@ class PolicyOptMf(PolicyOpt):
         feed_dict = {self.obs_tensor: traj_X,
                     self.action_tensor: traj_U,
                     self.cost_tensor: traj_C}
-        train_loss = self.solver(feed_dict, self.sess, device_string=self.device_string)
-
-        LOGGER.info('loss %f', train_loss)
-
-        #feed_dict = {self.obs_tensor: traj_X}
-        #num_values = obs.shape[0]
-        #if self.feat_op is not None:
-        #    self.feat_vals = self.solver.get_var_values(self.sess, self.feat_op, feed_dict, num_values, self.batch_size)
-        
-        # Keep track of tensorflow iterations for loading solver states.
-        #self.tf_iter += self._hyperparams['iterations']
+        train_loss = self.solver_mf(feed_dict, self.sess, device_string=self.device_string)
+        LOGGER.info('imit loss %f', train_loss)
         self.tf_iter += 1
-        # Optimize variance.
-        # A = np.sum(tgt_prc_orig, 0) + 2 * N * T * \
-        #         self._hyperparams['ent_reg'] * np.ones((dU, dU))
-        # A = A / np.sum(tgt_wt)
-
-        # TODO - Use dense covariance?
-        # self.var = 1 / np.diag(A)
-        # self.policy.chol_pol_covar = np.diag(np.sqrt(self.var))
 
         return self.policy
 
@@ -163,7 +254,6 @@ class PolicyOptMf(PolicyOpt):
         Args:
             obs: Numpy array of observations that is N x T x dO.
         """
-        assert 1==0
         dU = self._dU
         N, T = obs.shape[:2]
 
@@ -175,6 +265,9 @@ class PolicyOptMf(PolicyOpt):
                                          + self.policy.bias).T
 
         output = np.zeros((N, T, dU))
+        pol_sigma = np.zeros((N, T, dU, dU))
+        #pol_prec = np.zeros((N, T, dU, dU))
+        #pol_det_sigma = np.zeros((N, T))
 
         #SJHTODO:can we sample in batch?
         for i in range(N):
@@ -182,13 +275,22 @@ class PolicyOptMf(PolicyOpt):
                 # Feed in data.
                 feed_dict = {self.obs_tensor: np.expand_dims(obs[i, t], axis=0)}
                 with tf.device(self.device_string):
-                    output[i, t, :] = self.sess.run(self.act_op, feed_dict=feed_dict)
-
+                    if self.policy_type=="gmm":
+                        #STODO: which way to linearize the policy? average mean or sample mean
+                        weight, mean = self.sess.run(self.act_op, feed_dict=feed_dict)
+                        sample_comp = np.random.choice(weight.shape[1], p=weight[0])
+                        output[i, t, :] = mean[0, sample_comp]                        
+                    else:
+                        output[i, t, :], log_std = self.sess.run(self.act_op, feed_dict=feed_dict)
+                        #sigma = np.exp(log_std[0])
+                        #pol_sigma[i, t, :, :] = np.diag(sigma)
+                        #pol_prec[i, t, :, :] = np.diag(1.0/sigma)
+                        #pol_det_sigma[i, t] = np.prod(sigma)
         pol_sigma = np.tile(np.diag(self.var), [N, T, 1, 1])
         pol_prec = np.tile(np.diag(1.0 / self.var), [N, T, 1, 1])
         pol_det_sigma = np.tile(np.prod(self.var), [N, T])
 
-        return output, pol_sigma, pol_prec, pol_det_sigma
+        return output, pol_sigma#, pol_prec, pol_det_sigma
 
     def set_ent_reg(self, ent_reg):
         """ Set the entropy regularization. """

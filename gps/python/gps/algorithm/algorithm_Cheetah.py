@@ -131,7 +131,7 @@ class Algorithm(object):
             self.new_traj_distr[cond], self.cur[cond].eta = \
                     self.traj_opt.update(cond, self)
 
-    def _eval_cost(self, cond):
+    def _eval_cost(self, cond, verbose=True):
         """
         Evaluate costs for all samples for a condition.
         Args:
@@ -203,24 +203,24 @@ class Algorithm(object):
         self.cur[cond].traj_info.Cm = np.mean(Cm, 0)  # Quadratic term (matrix).
 
         self.cur[cond].cs = cs  # True value of cost.
+        if verbose:
+            prefix=''
+            undiscounted_returns = [-sum(path) for path in cs]
+            logger.record_tabular('AverageReturn', np.mean(undiscounted_returns))
+            logger.record_tabular('NumTrajs', len(cs))
+            logger.record_tabular('StdReturn', np.std(undiscounted_returns))
+            logger.record_tabular('MaxReturn', np.max(undiscounted_returns))
+            logger.record_tabular('MinReturn', np.min(undiscounted_returns))
 
-        prefix=''
-        undiscounted_returns = [-sum(path) for path in cs]
-        logger.record_tabular('AverageReturn', np.mean(undiscounted_returns))
-        logger.record_tabular('NumTrajs', len(cs))
-        logger.record_tabular('StdReturn', np.std(undiscounted_returns))
-        logger.record_tabular('MaxReturn', np.max(undiscounted_returns))
-        logger.record_tabular('MinReturn', np.min(undiscounted_returns))
-
-        ave_vel = np.array([np.mean(path) for path in cvel])
-        min_vel = np.array([np.min(path) for path in cvel])
-        max_vel = np.array([np.max(path) for path in cvel])
-        std_vel = np.array([np.std(path) for path in cvel])
-        logger.record_tabular(prefix+'AverageAverageVelocity', np.mean(ave_vel))
-        logger.record_tabular(prefix+'AverageMinVelocity', np.mean(min_vel))
-        logger.record_tabular(prefix+'AverageMaxVelocity', np.mean(max_vel))
-        logger.record_tabular(prefix+'AverageStdVelocity', np.mean(std_vel))
-        
+            ave_vel = np.array([np.mean(path) for path in cvel])
+            min_vel = np.array([np.min(path) for path in cvel])
+            max_vel = np.array([np.max(path) for path in cvel])
+            std_vel = np.array([np.std(path) for path in cvel])
+            logger.record_tabular(prefix+'AverageAverageVelocity', np.mean(ave_vel))
+            logger.record_tabular(prefix+'AverageMinVelocity', np.mean(min_vel))
+            logger.record_tabular(prefix+'AverageMaxVelocity', np.mean(max_vel))
+            logger.record_tabular(prefix+'AverageStdVelocity', np.mean(std_vel))
+            
 
     def _advance_iteration_variables(self):
         """

@@ -9,7 +9,7 @@ import pdb
 import logging
 import imp
 import os
-os.environ["CUDA_VISIBLE_DEVICES"] = "4"
+os.environ["CUDA_VISIBLE_DEVICES"] = "7"
 import os.path
 import sys
 import copy
@@ -95,6 +95,9 @@ class GPSMain(object):
 
                 self._take_iteration(itr, traj_sample_lists)
 
+                if self._hyperparams.get('iter_mf_train', False):
+                    self._mf_training(self._hyperparams['iter_mf_train'])
+
                 #pdb.set_trace()
                 pol_sample_lists = self._take_policy_samples()
                 self._log_data(itr, traj_sample_lists, pol_sample_lists)
@@ -103,6 +106,25 @@ class GPSMain(object):
             traceback.print_exception(*sys.exc_info())
         finally:
             self._end()
+
+    def _mf_training(self, itr):
+        pol = self.algorithm.policy_opt.policy
+        for tmp in range(itr):
+            for cond in self._train_idx:
+                for i in range(self._hyperparams['num_samples']):
+                    self.agent.sample(
+                        pol, cond,
+                        verbose=(i < self._hyperparams['verbose_trials'])
+                    )
+            traj_sample_lists = [
+                self.agent.get_samples(cond, -self._hyperparams['num_samples'])
+                for cond in self._train_idx
+            ]
+
+            # Clear agent samples.
+            self.agent.clear_samples()
+
+            self.algorithm._mf_iteration(traj_sample_lists, verbose=(tmp==itr-1))
 
     def test_policy(self, itr, N):
         """
