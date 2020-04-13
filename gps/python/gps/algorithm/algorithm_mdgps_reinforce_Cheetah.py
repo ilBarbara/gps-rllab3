@@ -72,6 +72,7 @@ class AlgorithmMDGPS_Reinforce(AlgorithmMDGPS, Algorithm):
         self._update_policy()
 
         # Prepare for next iteration
+        # !SJH:Check this
         self._advance_iteration_variables()
 
     def _mf_iteration(self, sample_lists, verbose):
