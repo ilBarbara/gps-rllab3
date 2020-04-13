@@ -27,3 +27,11 @@ python gps/gps_main.py rllab3_hopper_traj_opt
 python gps/gps_main.py rllab3_cheetah_example
 python gps/gps_main.py rllab3_cheetah_badmm
 ```
+
+For model-base + model-free:
+```bash
+python gps/gps_main.py rllab3_cheetah_mdgps_mf
+python gps/gps_main.py rllab3_cheetah_badmm_mf
+
+
+```
