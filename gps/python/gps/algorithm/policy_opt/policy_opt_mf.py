@@ -48,7 +48,9 @@ class PolicyOptMf(PolicyOpt):
         self.init_solver()
         self.var = self._hyperparams['init_var'] * np.ones(dU)
         self.center_adv = self._hyperparams.get("center_adv", True)
-        self.sess = tf.Session()
+        tfconfig = tf.ConfigProto()
+        tfconfig.gpu_options.allow_growth = True
+        self.sess = tf.Session(config=tfconfig)
         self.policy = TfPolicy(dU, self.obs_tensor, self.act_op, self.feat_op,
                                np.zeros(dU), self.sess, self.device_string,\
                                copy_param_scope=self._hyperparams['copy_param_scope'], policy_type=self.policy_type)

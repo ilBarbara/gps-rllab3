@@ -7,6 +7,7 @@ import pdb
 #mpl.use('Qt4Agg')
 
 import logging
+LOGGER = logging.getLogger(__name__)
 import imp
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "7"
@@ -108,6 +109,7 @@ class GPSMain(object):
             self._end()
 
     def _mf_training(self, itr):
+        LOGGER.info('model free training...')
         pol = self.algorithm.policy_opt.policy
         for tmp in range(itr):
             for cond in self._train_idx:

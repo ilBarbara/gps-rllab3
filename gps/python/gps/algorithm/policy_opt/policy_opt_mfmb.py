@@ -47,7 +47,9 @@ class PolicyOptMfMb(PolicyOpt):
         self.init_solver()
         self.var = self._hyperparams['init_var'] * np.ones(dU)
         self.center_adv = self._hyperparams.get("center_adv", True)
-        self.sess = tf.Session()
+        tfconfig = tf.ConfigProto()
+        tfconfig.gpu_options.allow_growth = True
+        self.sess = tf.Session(config=tfconfig)
         self.policy = TfPolicy(dU, self.obs_tensor, self.act_op, self.feat_op,
                                np.zeros(dU), self.sess, self.device_string, 
                                copy_param_scope=self._hyperparams['copy_param_scope'], 
@@ -184,9 +186,9 @@ class PolicyOptMfMb(PolicyOpt):
             train_loss = self.solver_imit(feed_dict, self.sess, device_string=self.device_string)
 
             average_loss += train_loss
-            if (i+1) % 50 == 0:
+            if (i+1) % 500 == 0:
                 LOGGER.info('tensorflow iteration %d, average loss %f',
-                             i+1, average_loss / 50)
+                             i+1, average_loss / 500)
                 average_loss = 0
 
         # Keep track of tensorflow iterations for loading solver states.
@@ -243,8 +245,9 @@ class PolicyOptMfMb(PolicyOpt):
                     self.action_tensor: traj_U,
                     self.cost_tensor: traj_C}
         train_loss = self.solver_mf(feed_dict, self.sess, device_string=self.device_string)
-        LOGGER.info('imit loss %f', train_loss)
         self.tf_iter += 1
+        if self.tf_iter%50==0:
+            LOGGER.info('imit loss %f', train_loss)
 
         return self.policy
 
