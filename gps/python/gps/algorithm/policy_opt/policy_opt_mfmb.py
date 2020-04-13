@@ -292,8 +292,8 @@ class PolicyOptMfMb(PolicyOpt):
         pol_sigma = np.tile(np.diag(self.var), [N, T, 1, 1])
         pol_prec = np.tile(np.diag(1.0 / self.var), [N, T, 1, 1])
         pol_det_sigma = np.tile(np.prod(self.var), [N, T])
-
-        return output, pol_sigma#, pol_prec, pol_det_sigma
+        #!SJH:Check pol_sigma
+        return output, pol_sigma, pol_prec, pol_det_sigma
 
     def set_ent_reg(self, ent_reg):
         """ Set the entropy regularization. """
